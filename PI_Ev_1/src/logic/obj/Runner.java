@@ -37,7 +37,11 @@ public class Runner {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Corredor{" + "nombre=" + name + ", apellido=" + surname + ", fechaDeNacimiento=" + dateOfBirth + '}';
+    }
     
     @Override
     public boolean equals(Object obj){
