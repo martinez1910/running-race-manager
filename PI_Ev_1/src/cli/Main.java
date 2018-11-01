@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import logic.obj.Runner;
 import logic.persistance.RepositoryImp;
@@ -71,6 +70,7 @@ public class Main {
             default:
                 util.MyUtil.unreachableCode("Invalid menu option");
         }
+        RepositoryImp.getInstance().automaticPersistance();
     }
 
     private static void newRunner() {        
@@ -179,6 +179,7 @@ public class Main {
             switch(SCANNER.next().toLowerCase()){
                 case "s":
                 case "si":
+                    RepositoryImp.getInstance().persist();
                     System.exit(0);
                 case "n":
                 case "no":

@@ -6,11 +6,16 @@ import java.util.List;
 import logic.obj.Runner;
 
 public class RepositoryImp implements IRepository{
-    private static RepositoryImp instance = null;
-    //private static FileManager fileManager = new FileManagerImp();
-    private ArrayList<Runner> runners = new ArrayList<Runner>();
+    private final static long AUTOMATIC_PERSISTANCE_INTERVAL = 30 * 1000;
     
-    private RepositoryImp(){}
+    private static RepositoryImp instance = null;
+    private static IFileManager fileManager = FileManagerImp.getInstance();
+    private ArrayList<Runner> runners;
+    private long lastPersistanceTime = 0;
+    
+    private RepositoryImp(){
+        runners = new ArrayList<>(fileManager.readRunners());
+    }
     
     public static RepositoryImp getInstance(){
         if(instance == null)
@@ -37,9 +42,9 @@ public class RepositoryImp implements IRepository{
 
     @Override
     public boolean updateRunner(Runner runner, Runner updatedRunner) {
-        for(Runner rn : runners)
-            if(rn.equals(runner)){
-                rn = updatedRunner;
+        for(int i=0; i < runners.size(); i++)
+            if(runners.get(i).equals(runner)){
+                runners.set(i, updatedRunner);
                 return true;
             }
         return false;
@@ -85,7 +90,13 @@ public class RepositoryImp implements IRepository{
 
     @Override
     public void persist() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        fileManager.persistRunners(this.runners);
+        this.lastPersistanceTime = System.currentTimeMillis();
     }
     
+    @Override
+    public void automaticPersistance(){
+        if(System.currentTimeMillis() - this.lastPersistanceTime > AUTOMATIC_PERSISTANCE_INTERVAL)
+            persist();
+    }
 }

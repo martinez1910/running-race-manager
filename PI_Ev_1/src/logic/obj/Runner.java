@@ -14,6 +14,14 @@ public class Runner {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public Runner(String[] runner) {
+        if(runner.length != 3) 
+            throw new IllegalArgumentException("Cannot construct the object with the given array (inconsistent number of elements found)");
+        this.name = runner[0];
+        this.surname = runner[1];
+        this.dateOfBirth = new Date(Long.parseLong(runner[2]));
+    }
+
     public String getName() {
         return name;
     }
@@ -41,6 +49,14 @@ public class Runner {
     @Override
     public String toString() {
         return "Corredor{" + "nombre=" + name + ", apellido=" + surname + ", fechaDeNacimiento=" + dateOfBirth + '}';
+    }
+    
+    public String toCSV(){
+        String csv = "";
+        csv += this.name +",";
+        csv += this.surname +",";
+        csv += Long.toString(this.dateOfBirth.getTime());
+        return csv;
     }
     
     @Override
