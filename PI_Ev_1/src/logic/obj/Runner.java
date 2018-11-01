@@ -5,23 +5,29 @@ import java.util.Date;
 
 public class Runner {
     private String name;
-    private String surname;
+    private String id;
     private Date dateOfBirth;
+    private String address;
+    private String phoneNumber;
 
-    public Runner(String name, String surname, Date dateOfBirth) {
+    public Runner(String name, String id, Date dateOfBirth, String address, String phoneNumber) {
         this.name = name;
-        this.surname = surname;
+        this.id = id;
         this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
-
+    
     public Runner(String[] runner) {
-        if(runner.length != 3) 
+        if(runner.length != 5) 
             throw new IllegalArgumentException("Cannot construct the object with the given array (inconsistent number of elements found)");
         this.name = runner[0];
-        this.surname = runner[1];
+        this.id = runner[1];
         this.dateOfBirth = new Date(Long.parseLong(runner[2]));
+        this.address = runner[3];
+        this.phoneNumber = runner[4];
     }
-
+    
     public String getName() {
         return name;
     }
@@ -30,12 +36,12 @@ public class Runner {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getId() {
+        return id;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Date getDateOfBirth() {
@@ -46,16 +52,34 @@ public class Runner {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
-        return "Corredor{" + "nombre=" + name + ", apellido=" + surname + ", fechaDeNacimiento=" + dateOfBirth + '}';
+        return "Corredor{" + "nombre=" + name + ", DNI=" + id + ", fechaDeNacimiento=" + dateOfBirth + ", dirección=" + address + ", teléfono=" + phoneNumber + '}';
     }
     
     public String toCSV(){
         String csv = "";
         csv += this.name +",";
-        csv += this.surname +",";
-        csv += Long.toString(this.dateOfBirth.getTime());
+        csv += this.id +",";
+        csv += Long.toString(this.dateOfBirth.getTime()) +",";
+        csv += this.address +",";
+        csv += this.phoneNumber;
         return csv;
     }
     
@@ -66,7 +90,9 @@ public class Runner {
         if(!(obj instanceof Runner)) return false;
         Runner runner = (Runner) obj;
         return runner.name.equals(this.name)
-                && runner.surname.equals(this.surname)
-                && runner.dateOfBirth.equals(this.dateOfBirth);
+                && runner.id.equals(this.id)
+                && runner.dateOfBirth.equals(this.dateOfBirth)
+                && runner.address.equals(this.address)
+                && runner.phoneNumber.equals(this.phoneNumber);
     }
 }

@@ -209,15 +209,14 @@ public class Main {
     }
 
     private static Runner createRunner() {
-        String name = null, surname = null;
         Date dateOfBirth = null;
         boolean error = false;
         
         System.out.println("Introduzca el NOMBRE del corredor:");
-        name = SCANNER.next();
+        String name = SCANNER.next();
         
-        System.out.println("Introduzca el APELLIDO del corredor:");
-        surname = SCANNER.next();
+        System.out.println("Introduzca el DNI del corredor:");
+        String id = SCANNER.next();
         
         System.out.println("Introduzca la FECHA DE NACIMIENTO del corredor (dd-mm-yyyy):");
         do{
@@ -231,6 +230,12 @@ public class Main {
             }
         }while(error);
         
-        return new Runner(name, surname, dateOfBirth);
+        System.out.println("Introduzca la DIRECCIÓN del corredor:");
+        String address = SCANNER.next();
+        
+        System.out.println("Introduzca el NÚMERO DE TELÉFONO del corredor:");
+        String phoneNumber = SCANNER.next();
+        
+        return new Runner(name, id, dateOfBirth, address, phoneNumber);
     }
 }
