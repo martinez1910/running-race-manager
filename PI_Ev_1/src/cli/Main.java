@@ -70,7 +70,6 @@ public class Main {
             default:
                 util.MyUtil.unreachableCode("Invalid menu option");
         }
-        RepositoryImp.getInstance().automaticPersistance();
     }
 
     private static void newRunner() {        

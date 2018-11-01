@@ -3,18 +3,20 @@ package logic.persistance;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import logic.obj.Runner;
 
 public class RepositoryImp implements IRepository{
-    private final static long AUTOMATIC_PERSISTANCE_INTERVAL = 30 * 1000;
+    private final static long AUTOMATIC_PERSISTANCE_INTERVAL = 10 * 1000;
     
     private static RepositoryImp instance = null;
     private static IFileManager fileManager = FileManagerImp.getInstance();
     private ArrayList<Runner> runners;
-    private long lastPersistanceTime = 0;
     
     private RepositoryImp(){
         runners = new ArrayList<>(fileManager.readRunners());
+        automaticPersistance();
     }
     
     public static RepositoryImp getInstance(){
@@ -91,12 +93,17 @@ public class RepositoryImp implements IRepository{
     @Override
     public void persist() {
         fileManager.persistRunners(this.runners);
-        this.lastPersistanceTime = System.currentTimeMillis();
     }
     
-    @Override
     public void automaticPersistance(){
-        if(System.currentTimeMillis() - this.lastPersistanceTime > AUTOMATIC_PERSISTANCE_INTERVAL)
-            persist();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                persist();
+            }
+        };
+        
+        Timer timer = new Timer(true);
+        timer.scheduleAtFixedRate(timerTask, AUTOMATIC_PERSISTANCE_INTERVAL, AUTOMATIC_PERSISTANCE_INTERVAL);
     }
 }

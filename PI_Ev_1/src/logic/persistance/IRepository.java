@@ -14,5 +14,4 @@ public interface IRepository {
     public List<Runner> getRunnersByDateOfBirthDesc();
     
     public void persist();
-    public void automaticPersistance();
 }
