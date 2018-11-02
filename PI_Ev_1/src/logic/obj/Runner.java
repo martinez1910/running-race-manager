@@ -1,6 +1,8 @@
 package logic.obj;
 
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class Runner {
@@ -70,7 +72,8 @@ public class Runner {
 
     @Override
     public String toString() {
-        return "Corredor{" + "nombre=" + name + ", DNI=" + id + ", fechaDeNacimiento=" + dateOfBirth + ", dirección=" + address + ", teléfono=" + phoneNumber + '}';
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("es", "ES"));
+        return "Corredor{" + "nombre=" + name + ", DNI=" + id + ", fechaDeNacimiento=" + df.format(dateOfBirth) + ", dirección=" + address + ", teléfono=" + phoneNumber + '}';
     }
     
     public String toCSV(){
