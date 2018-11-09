@@ -9,7 +9,9 @@ import java.util.Scanner;
 import logic.obj.Runner;
 import logic.persistance.RepositoryImp;
 
-
+/**
+ * @deprecated This User Interface was made during the first version of the project and since it hasn't been updated with the following versions it's not safe to execute it.
+ */
 public class Main {
     private final static Scanner SCANNER = new Scanner(System.in);
     
