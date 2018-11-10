@@ -11,10 +11,11 @@ public class RepositoryImp implements IRepository{
     private final static long AUTOMATIC_PERSISTANCE_INTERVAL = 10 * 1000;
     
     private static RepositoryImp instance = null;
-    private static IFileManager fileManager = FileManagerImp.getInstance();
-    private ArrayList<Runner> runners;
+    private final IFileManager fileManager;
+    private final ArrayList<Runner> runners;
     
     private RepositoryImp(){
+        this.fileManager = FileManagerImp.getInstance();
         runners = new ArrayList<>(fileManager.readRunners());
         automaticPersistance();
     }
@@ -64,7 +65,7 @@ public class RepositoryImp implements IRepository{
 
     @Override
     public List<Runner> getRunnersByDateOfBirthAsc() {
-        ArrayList<Runner> tmp = new ArrayList<Runner>();
+        ArrayList<Runner> tmp = new ArrayList<>();
         for(Runner runner : this.runners)
             tmp.add(runner);
         tmp.sort(new Comparator<Runner>(){
@@ -78,7 +79,7 @@ public class RepositoryImp implements IRepository{
 
     @Override
     public List<Runner> getRunnersByDateOfBirthDesc() {
-        ArrayList<Runner> tmp = new ArrayList<Runner>();
+        ArrayList<Runner> tmp = new ArrayList<>();
         for(Runner runner : this.runners)
             tmp.add(runner);
         tmp.sort(new Comparator<Runner>(){
@@ -95,7 +96,7 @@ public class RepositoryImp implements IRepository{
         fileManager.persistRunners(this.runners);
     }
     
-    public void automaticPersistance(){
+    private void automaticPersistance(){
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {

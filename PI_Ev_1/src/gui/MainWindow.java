@@ -2,7 +2,9 @@ package gui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
 import javax.swing.JOptionPane;
+import logic.persistance.RepositoryImp;
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -23,13 +25,13 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        pn_main = new javax.swing.JPanel();
+        btn_runner = new javax.swing.JButton();
+        btn_race = new javax.swing.JButton();
+        btn_race_finished = new javax.swing.JButton();
+        btn_settings = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btn_exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.title")); // NOI18N
@@ -37,41 +39,41 @@ public class MainWindow extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(550, 300));
         setPreferredSize(new java.awt.Dimension(300, 100));
 
-        jPanel1.setLayout(new java.awt.GridLayout(2, 3, 12, 12));
+        pn_main.setLayout(new java.awt.GridLayout(2, 3, 12, 12));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_woman_x64.png"))); // NOI18N
-        jButton1.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.jButton1.text")); // NOI18N
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_runner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_woman_x64.png"))); // NOI18N
+        btn_runner.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_runner.text")); // NOI18N
+        btn_runner.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_runner.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_runner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_runnerActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        pn_main.add(btn_runner);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_group_x64.png"))); // NOI18N
-        jButton2.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.jButton2.text")); // NOI18N
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jButton2);
+        btn_race.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_group_x64.png"))); // NOI18N
+        btn_race.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_race.text")); // NOI18N
+        btn_race.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_race.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pn_main.add(btn_race);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_finish_x64.png"))); // NOI18N
-        jButton3.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.jButton3.text")); // NOI18N
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jButton3);
+        btn_race_finished.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_finish_x64.png"))); // NOI18N
+        btn_race_finished.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_race_finished.text")); // NOI18N
+        btn_race_finished.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_race_finished.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pn_main.add(btn_race_finished);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/settings_x64.png"))); // NOI18N
-        jButton4.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.jButton4.text")); // NOI18N
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/settings_x64.png"))); // NOI18N
+        btn_settings.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_settings.text")); // NOI18N
+        btn_settings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_settings.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_settings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_settingsActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4);
+        pn_main.add(btn_settings);
 
         jButton5.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.jButton5.text")); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -79,18 +81,18 @@ public class MainWindow extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5);
+        pn_main.add(jButton5);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/exit_x64.png"))); // NOI18N
-        jButton6.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.jButton6.text")); // NOI18N
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/exit_x64.png"))); // NOI18N
+        btn_exit.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_exit.text")); // NOI18N
+        btn_exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_exit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_exitActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6);
+        pn_main.add(btn_exit);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,38 +100,42 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pn_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pn_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_runnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_runnerActionPerformed
+        Utils.allignAndShowFrame(RunnerManager.getInstance(), this);        
+    }//GEN-LAST:event_btn_runnerActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_settingsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_settingsActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
         exit();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btn_exitActionPerformed
 
     
     private void myInitComponents() {
+        Locale locale = new Locale("es", "ES"); 
+        Locale.setDefault(locale);
+        JOptionPane.setDefaultLocale(locale);
+        
         this.setLocationRelativeTo(null); //center window
         jButton5.setVisible(false);
         
@@ -157,15 +163,11 @@ public class MainWindow extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -176,19 +178,21 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
-
+    
     private void exit() {
-        if(JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cerrar la aplicación?", "Salir", JOptionPane.YES_NO_OPTION))
-            this.dispose();
+        if(JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cerrar la aplicación?", "Salir", JOptionPane.YES_NO_OPTION)){
+            RepositoryImp.getInstance().persist();
+            System.exit(0);
+        }
     }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_exit;
+    private javax.swing.JButton btn_race;
+    private javax.swing.JButton btn_race_finished;
+    private javax.swing.JButton btn_runner;
+    private javax.swing.JButton btn_settings;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JPanel pn_main;
+    // End of variables declaration//GEN-END:variables
 }
