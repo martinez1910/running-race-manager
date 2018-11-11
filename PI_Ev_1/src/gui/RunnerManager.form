@@ -10,7 +10,7 @@
       <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/gui/img/runner_woman_x64.png&quot;)).getImage()" type="code"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[550, 300]"/>
+      <Dimension value="[600, 300]"/>
     </Property>
   </Properties>
   <SyntheticProperties>

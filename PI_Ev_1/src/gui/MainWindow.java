@@ -35,7 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.title")); // NOI18N
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/timer_x64.png")).getImage());
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/podium_x512.png")).getImage());
         setMinimumSize(new java.awt.Dimension(550, 300));
         setPreferredSize(new java.awt.Dimension(300, 100));
 

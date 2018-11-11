@@ -2,8 +2,15 @@ package gui;
 
 import java.awt.Frame;
 import java.util.Date;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import logic.obj.Runner;
 import logic.persistance.RepositoryImp;
+import org.netbeans.validation.api.builtin.stringvalidation.CapitalValidator;
+import org.netbeans.validation.api.builtin.stringvalidation.SpanishIDValidator;
+import org.netbeans.validation.api.builtin.stringvalidation.SpanishPhoneNumberValidator;
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.ui.ValidationGroup;
 
 public class RunnerForm extends javax.swing.JDialog {
     private final RunnerManager parent;
@@ -29,7 +36,6 @@ public class RunnerForm extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         pn_form = new javax.swing.JPanel();
         vpn_validation = new org.netbeans.validation.api.ui.swing.ValidationPanel();
@@ -55,6 +61,7 @@ public class RunnerForm extends javax.swing.JDialog {
         lbl_name.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_name.text")); // NOI18N
 
         txt_name.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.txt_name.text")); // NOI18N
+        txt_name.setName(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_name.text")); // NOI18N
         txt_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nameActionPerformed(evt);
@@ -64,20 +71,25 @@ public class RunnerForm extends javax.swing.JDialog {
         lbl_id.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lbl_id.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_id.text")); // NOI18N
 
-        txt_id.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.txt_id.text")); // NOI18N
+        txt_id.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.DNI.text")); // NOI18N
+        txt_id.setName("DNI"); // NOI18N
 
         lbl_date.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lbl_date.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_date.text")); // NOI18N
 
+        dpk_date.setName("Fecha de nacimiento"); // NOI18N
+
         lbl_address.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lbl_address.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_address.text")); // NOI18N
 
-        txt_address.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.txt_address.text")); // NOI18N
+        txt_address.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.Dirección.text")); // NOI18N
+        txt_address.setName("Dirección"); // NOI18N
 
         lbl_phone.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lbl_phone.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_phone.text")); // NOI18N
 
-        txt_phone.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.txt_phone.text")); // NOI18N
+        txt_phone.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.Teléfono.text")); // NOI18N
+        txt_phone.setName("Teléfono"); // NOI18N
 
         javax.swing.GroupLayout pn_form_fieldsLayout = new javax.swing.GroupLayout(pn_form_fields);
         pn_form_fields.setLayout(pn_form_fieldsLayout);
@@ -144,7 +156,7 @@ public class RunnerForm extends javax.swing.JDialog {
             pn_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_formLayout.createSequentialGroup()
                 .addComponent(vpn_validation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(0, 0, 0)
                 .addComponent(pn_form_fields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
@@ -226,6 +238,8 @@ public class RunnerForm extends javax.swing.JDialog {
             initAddRunner();
         else
             initUpdateRunner();
+        
+        addValidation();
     }
 
 //    /**
@@ -275,6 +289,10 @@ public class RunnerForm extends javax.swing.JDialog {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")).getImage());
         btn_add_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")));
         btn_add_update.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerManager.btn_add.text"));
+        
+        dpk_date.setDate(new Date());
+        
+        btn_add_update.setEnabled(false);
     }
 
     private void initUpdateRunner() {
@@ -289,6 +307,29 @@ public class RunnerForm extends javax.swing.JDialog {
         txt_address.setText(runner.getAddress());
         txt_phone.setText(runner.getPhoneNumber());
     }
+    
+     private void addValidation() {
+         ValidationGroup group = vpn_validation.getValidationGroup();
+         group.add(txt_phone, new SpanishPhoneNumberValidator());
+         group.add(txt_phone, StringValidators.REQUIRE_NON_EMPTY_STRING);
+         group.add(txt_address, StringValidators.REQUIRE_NON_EMPTY_STRING);
+         dpk_date.getEditor().setName("Fecha de nacimiento");
+         group.add(dpk_date.getEditor(), StringValidators.REQUIRE_NON_EMPTY_STRING);
+         group.add(txt_id, new SpanishIDValidator());
+         group.add(txt_id, StringValidators.REQUIRE_NON_EMPTY_STRING);
+         group.add(txt_name, new CapitalValidator());
+         group.add(txt_name, StringValidators.REQUIRE_NON_EMPTY_STRING);
+         
+         vpn_validation.addChangeListener(new ChangeListener() {
+             @Override
+             public void stateChanged(ChangeEvent e) {
+                 if(vpn_validation.getProblem() == null)
+                     btn_add_update.setEnabled(true);
+                 else
+                     btn_add_update.setEnabled(false);
+             }
+         });
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add_update;

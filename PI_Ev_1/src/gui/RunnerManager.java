@@ -44,7 +44,7 @@ public class RunnerManager extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(RunnerManager.class, "MainWindow.btn_runner.text")); // NOI18N
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_woman_x64.png")).getImage());
-        setMinimumSize(new java.awt.Dimension(550, 300));
+        setMinimumSize(new java.awt.Dimension(600, 300));
 
         scrpn_table.setPreferredSize(new java.awt.Dimension(350, 175));
 
