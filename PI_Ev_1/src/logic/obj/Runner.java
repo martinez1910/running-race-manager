@@ -1,33 +1,37 @@
 package logic.obj;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 
-public class Runner {
+public class Runner implements Serializable{
     private String name;
     private String id;
     private Date dateOfBirth;
     private String address;
     private String phoneNumber;
+    private boolean removed;
 
-    public Runner(String name, String id, Date dateOfBirth, String address, String phoneNumber) {
+    public Runner(String name, String id, Date dateOfBirth, String address, String phoneNumber, boolean removed) {
         this.name = name;
         this.id = id;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.removed = removed;
     }
     
     public Runner(String[] runner) {
-        if(runner.length != 5) 
+        if(runner.length != 6) 
             throw new IllegalArgumentException("Cannot construct the object with the given array (inconsistent number of elements found)");
         this.name = runner[0];
         this.id = runner[1];
         this.dateOfBirth = new Date(Long.parseLong(runner[2]));
         this.address = runner[3];
         this.phoneNumber = runner[4];
+        this.removed = Boolean.parseBoolean(runner[5]);
     }
     
     public String getName() {
@@ -69,11 +73,19 @@ public class Runner {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(boolean removed) {
+        this.removed = removed;
+    }
 
     @Override
     public String toString() {
         DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("es", "ES"));
-        return "Corredor{" + "nombre=" + name + ", DNI=" + id + ", fechaDeNacimiento=" + df.format(dateOfBirth) + ", dirección=" + address + ", teléfono=" + phoneNumber + '}';
+        return "Corredor{" + "nombre=" + name + ", DNI=" + id + ", fechaDeNacimiento=" + df.format(dateOfBirth) + ", dirección=" + address + ", teléfono=" + phoneNumber + ", borrado=" + removed + '}';
     }
     
     public String toCSV(){
@@ -82,7 +94,8 @@ public class Runner {
         csv += this.id +",";
         csv += Long.toString(this.dateOfBirth.getTime()) +",";
         csv += this.address +",";
-        csv += this.phoneNumber;
+        csv += this.phoneNumber +",";
+        csv += this.removed;
         return csv;
     }
     

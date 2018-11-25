@@ -1,25 +1,25 @@
 package gui;
 
-import gui.tablemodel.RunnerTableModel;
+import gui.tablemodel.RaceTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
-import logic.obj.Runner;
+import logic.obj.Race;
 import logic.persistance.RepositoryImp;
 
-public class RunnerManager extends javax.swing.JFrame {
-    private static RunnerManager instance = null;
+public class RaceManager extends javax.swing.JFrame {
+    private static RaceManager instance = null;
 
     /**
-     * Creates new form RunnerManager
+     * Creates new form RaceManager
      */
-    private RunnerManager() {
+    private RaceManager() {
         initComponents();
         myInitComponents();
     }
     
-    public static RunnerManager getInstance(){
+    public static RaceManager getInstance(){
         if(instance == null)
-            instance = new RunnerManager();
+            instance = new RaceManager();
         return instance;
     }
 
@@ -33,22 +33,24 @@ public class RunnerManager extends javax.swing.JFrame {
     private void initComponents() {
 
         scrpn_table = new javax.swing.JScrollPane();
-        tb_runners = new javax.swing.JTable();
+        tb_races = new javax.swing.JTable();
         pn_buttons = new javax.swing.JPanel();
         btn_add = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
         btn_remove = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btn_back = new javax.swing.JButton();
+        pn_start_button = new javax.swing.JPanel();
+        btn_start = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle(org.openide.util.NbBundle.getMessage(RunnerManager.class, "MainWindow.btn_runner.text")); // NOI18N
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_woman_x64.png")).getImage());
-        setMinimumSize(new java.awt.Dimension(600, 300));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.title")); // NOI18N
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_group_x64.png")).getImage());
 
         scrpn_table.setPreferredSize(new java.awt.Dimension(350, 175));
 
-        tb_runners.setModel(new javax.swing.table.DefaultTableModel(
+        tb_races.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,13 +61,13 @@ public class RunnerManager extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tb_runners.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scrpn_table.setViewportView(tb_runners);
+        tb_races.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrpn_table.setViewportView(tb_races);
 
         pn_buttons.setLayout(new java.awt.GridLayout(1, 4, 18, 0));
 
         btn_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png"))); // NOI18N
-        btn_add.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_add.text")); // NOI18N
+        btn_add.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_add.text")); // NOI18N
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addActionPerformed(evt);
@@ -74,7 +76,7 @@ public class RunnerManager extends javax.swing.JFrame {
         pn_buttons.add(btn_add);
 
         btn_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png"))); // NOI18N
-        btn_edit.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_edit.text")); // NOI18N
+        btn_edit.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_edit.text")); // NOI18N
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editActionPerformed(evt);
@@ -83,7 +85,7 @@ public class RunnerManager extends javax.swing.JFrame {
         pn_buttons.add(btn_edit);
 
         btn_remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
-        btn_remove.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_remove.text")); // NOI18N
+        btn_remove.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_remove.text")); // NOI18N
         btn_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_removeActionPerformed(evt);
@@ -91,17 +93,28 @@ public class RunnerManager extends javax.swing.JFrame {
         });
         pn_buttons.add(btn_remove);
 
-        jButton4.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.jButton4.text")); // NOI18N
+        jButton4.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.jButton4.text")); // NOI18N
         pn_buttons.add(jButton4);
 
         btn_back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/back_x12.png"))); // NOI18N
-        btn_back.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_back.text")); // NOI18N
+        btn_back.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_back.text")); // NOI18N
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_backActionPerformed(evt);
             }
         });
         pn_buttons.add(btn_back);
+
+        pn_start_button.setLayout(new java.awt.GridLayout(2, 1));
+
+        btn_start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_start_x64.png"))); // NOI18N
+        btn_start.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_start.text")); // NOI18N
+        btn_start.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_start.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pn_start_button.add(btn_start);
+
+        jButton2.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.jButton2.text")); // NOI18N
+        pn_start_button.add(jButton2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,15 +123,20 @@ public class RunnerManager extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pn_buttons, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
-                    .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pn_buttons, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pn_start_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(pn_start_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pn_buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -128,37 +146,38 @@ public class RunnerManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
-        Utils.allignAndShowFrame(new RunnerForm(this, null), this);
+        Utils.allignAndShowFrame(new RaceForm(this, null), this);
     }//GEN-LAST:event_btn_addActionPerformed
+
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        int selectedRow = tb_races.getSelectedRow();
+        if(selectedRow == -1){
+            Utils.messageInformationSelectRace(this);
+            return;
+        }
+        Race race = RepositoryImp.getInstance().getRace(tb_races.convertRowIndexToModel(selectedRow));
+        Utils.allignAndShowFrame(new RaceForm(this, race), this);
+    }//GEN-LAST:event_btn_editActionPerformed
+
+    private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
+        int selectedRow = tb_races.getSelectedRow();
+        if(selectedRow == -1){
+            Utils.messageInformationSelectRace(this);
+            return;
+        }
+        if(Utils.messageConfirmationRemoveRace(this) == JOptionPane.YES_OPTION){
+            Race race = RepositoryImp.getInstance().getRaces().get(tb_races.convertRowIndexToModel(selectedRow));
+            RepositoryImp.getInstance().removeRace(race);
+            updateTable();
+        }
+    }//GEN-LAST:event_btn_removeActionPerformed
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
         this.dispose();
     }//GEN-LAST:event_btn_backActionPerformed
 
-    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        int selectedRow = tb_runners.getSelectedRow();
-        if(selectedRow == -1){
-            Utils.messageInformationSelectRunner(this);
-            return;
-        }
-        Runner runner = RepositoryImp.getInstance().getRunner(tb_runners.convertRowIndexToModel(selectedRow));
-        Utils.allignAndShowFrame(new RunnerForm(this, runner), this);
-    }//GEN-LAST:event_btn_editActionPerformed
-
-    private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
-        int selectedRow = tb_runners.getSelectedRow();
-        if(selectedRow == -1){
-            Utils.messageInformationSelectRunner(this);
-            return;
-        }
-        if(Utils.messageConfirmationRemoveRunner(this) == JOptionPane.YES_OPTION){
-            Runner runner = RepositoryImp.getInstance().getNonRemovedRunners().get(tb_runners.convertRowIndexToModel(selectedRow));
-            RepositoryImp.getInstance().removeRunner(runner);
-            updateTable();
-        }
-    }//GEN-LAST:event_btn_removeActionPerformed
-
-    private void myInitComponents() {  
+    private void myInitComponents(){
+        jButton2.setVisible(false);
         jButton4.setVisible(false);
         updateTable();
     }
@@ -180,30 +199,30 @@ public class RunnerManager extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new RunnerManager().setVisible(true);
+//                new RaceManager().setVisible(true);
 //            }
 //        });
 //    }
 
     protected void updateTable(){
         Utils.lockCursor(this);
-        RunnerTableModel runnerTableModel = new RunnerTableModel(RepositoryImp.getInstance().getNonRemovedRunners());
-        tb_runners.setModel(runnerTableModel);
-        TableRowSorter<RunnerTableModel> sorter = new TableRowSorter<>(runnerTableModel);
-        tb_runners.setRowSorter(sorter);
+        RaceTableModel raceTableModel = new RaceTableModel(RepositoryImp.getInstance().getRaces());
+        tb_races.setModel(raceTableModel);
+        TableRowSorter<RaceTableModel> sorter = new TableRowSorter<>(raceTableModel);
+        tb_races.setRowSorter(sorter);
         /*
         ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
         sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
@@ -211,15 +230,17 @@ public class RunnerManager extends javax.swing.JFrame {
         */
         Utils.unlockCursor(this);
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_remove;
+    private javax.swing.JButton btn_start;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel pn_buttons;
+    private javax.swing.JPanel pn_start_button;
     private javax.swing.JScrollPane scrpn_table;
-    private javax.swing.JTable tb_runners;
+    private javax.swing.JTable tb_races;
     // End of variables declaration//GEN-END:variables
 }

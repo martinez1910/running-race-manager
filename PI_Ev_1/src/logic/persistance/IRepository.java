@@ -1,7 +1,9 @@
 package logic.persistance;
 
 import java.util.List;
+import logic.obj.Race;
 import logic.obj.Runner;
+import logic.obj.RunnerInRace;
 
 public interface IRepository {
     public boolean addRunner(Runner runner);
@@ -10,8 +12,27 @@ public interface IRepository {
     public boolean updateRunner(Runner runner, Runner updatedRunner);
     public Runner getRunner(int pos);
     public List<Runner> getRunners();
+    public List<Runner> getNonRemovedRunners();
     public List<Runner> getRunnersByDateOfBirthAsc();
     public List<Runner> getRunnersByDateOfBirthDesc();
+    
+    public boolean addRace(Race race);
+    public boolean removeRace(int pos);
+    public boolean removeRace(Race race);
+    public boolean updateRace(Race race, Race updatedRace);
+    public Race getRace(int pos);
+    public List<Race> getRaces();
+    public int getAvailableNumRace();
+    
+    public boolean addRunnerInRace(RunnerInRace runnerInRace);
+    public boolean removeRunnerInRace(int pos);
+    public boolean removeRunnerInRace(RunnerInRace runnerInRace);
+    public boolean removeRunnersInRace(Race race);
+    public boolean updateRunnerInRace(RunnerInRace runnerInRace, RunnerInRace updatedRunnerInRace);
+    public RunnerInRace getRunnerInRace(int pos);
+    public List<RunnerInRace> getRunnersInRaces();
+    public List<RunnerInRace> getRunnersInRace(Race race);
+    public List<Runner> getRunnersNotInList(List<RunnerInRace> runnersInList);
     
     public void persist();
 }

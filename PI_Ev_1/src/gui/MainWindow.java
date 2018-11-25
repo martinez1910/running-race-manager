@@ -56,6 +56,11 @@ public class MainWindow extends javax.swing.JFrame {
         btn_race.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_race.text")); // NOI18N
         btn_race.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_race.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_race.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_raceActionPerformed(evt);
+            }
+        });
         pn_main.add(btn_race);
 
         btn_race_finished.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_finish_x64.png"))); // NOI18N
@@ -129,6 +134,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
         exit();
     }//GEN-LAST:event_btn_exitActionPerformed
+
+    private void btn_raceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_raceActionPerformed
+        Utils.allignAndShowFrame(RaceManager.getInstance(), this);
+    }//GEN-LAST:event_btn_raceActionPerformed
 
     
     private void myInitComponents() {

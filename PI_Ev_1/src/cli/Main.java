@@ -81,7 +81,7 @@ public class Main {
     }
 
     private static void removeRunner() {
-        List<Runner> runners = RepositoryImp.getInstance().getRunners();
+        List<Runner> runners = RepositoryImp.getInstance().getNonRemovedRunners();
         if(runners.isEmpty()){
             printNoRunnersMessage();
             return;
@@ -112,7 +112,7 @@ public class Main {
     }
 
     private static void updateRunner() {
-        List<Runner> runners = RepositoryImp.getInstance().getRunners();
+        List<Runner> runners = RepositoryImp.getInstance().getNonRemovedRunners();
         if(runners.isEmpty()){
             printNoRunnersMessage();
             return;
@@ -143,11 +143,11 @@ public class Main {
     }
 
     private static void printRunners() {
-        printListOfRunners(RepositoryImp.getInstance().getRunners());
+        printListOfRunners(RepositoryImp.getInstance().getNonRemovedRunners());
     }
 
     private static void printRunnersByBirthdate() {
-        if(RepositoryImp.getInstance().getRunners().isEmpty()){
+        if(RepositoryImp.getInstance().getNonRemovedRunners().isEmpty()){
             printNoRunnersMessage();
             return;
         }
@@ -238,6 +238,6 @@ public class Main {
         System.out.println("Introduzca el NÚMERO DE TELÉFONO del corredor:");
         String phoneNumber = SCANNER.next();
         
-        return new Runner(name, id, dateOfBirth, address, phoneNumber);
+        return new Runner(name, id, dateOfBirth, address, phoneNumber, false);
     }
 }

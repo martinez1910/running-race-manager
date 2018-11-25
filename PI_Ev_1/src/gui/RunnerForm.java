@@ -71,8 +71,8 @@ public class RunnerForm extends javax.swing.JDialog {
         lbl_id.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lbl_id.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_id.text")); // NOI18N
 
-        txt_id.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.DNI.text")); // NOI18N
-        txt_id.setName("DNI"); // NOI18N
+        txt_id.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.DNI/NIE.text")); // NOI18N
+        txt_id.setName("DNI/NIE"); // NOI18N
 
         lbl_date.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lbl_date.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.lbl_date.text")); // NOI18N
@@ -218,7 +218,7 @@ public class RunnerForm extends javax.swing.JDialog {
         Date dateOfBirth = dpk_date.getDate();
         String address = txt_address.getText();
         String phoneNumber = txt_phone.getText();
-        Runner newRunner = new Runner(name, id, dateOfBirth, address, phoneNumber);
+        Runner newRunner = new Runner(name, id, dateOfBirth, address, phoneNumber, false);
         
         if(this.runner == null){
             if(!RepositoryImp.getInstance().addRunner(newRunner)){
@@ -238,6 +238,8 @@ public class RunnerForm extends javax.swing.JDialog {
             initAddRunner();
         else
             initUpdateRunner();
+        
+        dpk_date.getMonthView().setUpperBound(new Date());
         
         addValidation();
     }
