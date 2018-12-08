@@ -40,9 +40,10 @@ public class RaceStart extends javax.swing.JDialog {
 
         lbl_text = new javax.swing.JLabel();
         btn_jstopwatch = new gui.component.JStopwatch();
+        pn_runners_info = new javax.swing.JPanel();
         lbl_finished_text = new javax.swing.JLabel();
-        lbl_left_text = new javax.swing.JLabel();
         lbl_finished = new javax.swing.JLabel();
+        lbl_left_text = new javax.swing.JLabel();
         lbl_left = new javax.swing.JLabel();
         pn_buttons = new javax.swing.JPanel();
         btn_finish = new javax.swing.JButton();
@@ -51,19 +52,28 @@ public class RaceStart extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.title")); // NOI18N
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_start_x64.png")).getImage());
+        setMinimumSize(new java.awt.Dimension(550, 250));
         setResizable(false);
 
         lbl_text.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.lbl_text.text")); // NOI18N
 
         btn_jstopwatch.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
 
-        lbl_finished_text.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.lbl_finished_text.text")); // NOI18N
+        pn_runners_info.setLayout(new java.awt.GridLayout(2, 2, 10, 0));
 
-        lbl_left_text.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.lbl_left_text.text")); // NOI18N
+        lbl_finished_text.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbl_finished_text.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.lbl_finished_text.text")); // NOI18N
+        pn_runners_info.add(lbl_finished_text);
 
         lbl_finished.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.lbl_finished.text")); // NOI18N
+        pn_runners_info.add(lbl_finished);
+
+        lbl_left_text.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbl_left_text.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.lbl_left_text.text")); // NOI18N
+        pn_runners_info.add(lbl_left_text);
 
         lbl_left.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.lbl_left.text")); // NOI18N
+        pn_runners_info.add(lbl_left);
 
         pn_buttons.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
@@ -91,39 +101,25 @@ public class RaceStart extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                     .addComponent(pn_buttons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btn_jstopwatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_text)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lbl_left_text)
-                                .addComponent(lbl_finished_text))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbl_finished)
-                                .addComponent(lbl_left)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_jstopwatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pn_runners_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_jstopwatch, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_finished_text)
-                    .addComponent(lbl_finished))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_left_text)
-                    .addComponent(lbl_left))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pn_runners_info, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(pn_buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -228,5 +224,6 @@ public class RaceStart extends javax.swing.JDialog {
     private javax.swing.JLabel lbl_left_text;
     private javax.swing.JLabel lbl_text;
     private javax.swing.JPanel pn_buttons;
+    private javax.swing.JPanel pn_runners_info;
     // End of variables declaration//GEN-END:variables
 }

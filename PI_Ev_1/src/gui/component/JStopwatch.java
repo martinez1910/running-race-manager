@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JButton;
@@ -18,10 +19,12 @@ import javax.swing.JOptionPane;
  */
 public class JStopwatch extends JButton implements Serializable{
     private Date startDate;
-    private final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SSS");
+    private final SimpleDateFormat format;
     private JStopwatchListener listener;
     
     public JStopwatch(){
+        format = new SimpleDateFormat("HH:mm:ss.SSS");
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
         setText("00:00:00.000");
         addActionListener(new ActionListener() {
             @Override
@@ -38,7 +41,7 @@ public class JStopwatch extends JButton implements Serializable{
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    long elapsedTime = new Date().getTime() - startDate.getTime() - 60*60*1000; //avoids starting at 1:00:00
+                    long elapsedTime = new Date().getTime() - startDate.getTime();
                     setText(format.format(elapsedTime));
                 }
             }, 0, 1);

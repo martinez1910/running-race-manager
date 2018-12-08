@@ -141,7 +141,7 @@ public class RunnerManager extends javax.swing.JFrame {
             Utils.messageInformationSelectRunner(this);
             return;
         }
-        Runner runner = RepositoryImp.getInstance().getRunner(tb_runners.convertRowIndexToModel(selectedRow));
+        Runner runner = RepositoryImp.getInstance().getNonRemovedRunner(tb_runners.convertRowIndexToModel(selectedRow));
         Utils.allignAndShowWindow(new RunnerForm(this, runner), this);
     }//GEN-LAST:event_btn_editActionPerformed
 

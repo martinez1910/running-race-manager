@@ -1,6 +1,8 @@
 package logic.obj;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 import logic.persistance.RepositoryImp;
 
 public class RunnerInRace implements Serializable{
@@ -70,6 +72,12 @@ public class RunnerInRace implements Serializable{
     
     public Runner getRunner(){
         return RepositoryImp.getInstance().getRunner(this.numRunner);
+    }
+    
+    public String getFormattedTime(){
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SSS");
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return format.format(this.time);
     }
     
     @Override

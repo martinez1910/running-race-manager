@@ -28,7 +28,7 @@ public class RaceTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.races.get(rowIndex).getNumRace();
+                return this.races.get(rowIndex).getNumRace()+1;
             case 1:
                 return this.races.get(rowIndex).getName();
             case 2:

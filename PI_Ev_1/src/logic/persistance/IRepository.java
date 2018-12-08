@@ -12,6 +12,7 @@ public interface IRepository {
     public boolean updateRunner(Runner runner, Runner updatedRunner);
     public Runner getRunner(int pos);
     public List<Runner> getRunners();
+    public Runner getNonRemovedRunner(int pos);
     public List<Runner> getNonRemovedRunners();
     public List<Runner> getRunnersByDateOfBirthAsc();
     public List<Runner> getRunnersByDateOfBirthDesc();
@@ -24,6 +25,8 @@ public interface IRepository {
     public List<Race> getRaces();
     public Race getUnfinishedRace(int pos);
     public List<Race> getUnfinishedRaces();
+    public Race getFinishedRace(int pos);
+    public List<Race> getFinishedRaces();
     public int getAvailableNumRace();
     
     public boolean addRunnerInRace(RunnerInRace runnerInRace);

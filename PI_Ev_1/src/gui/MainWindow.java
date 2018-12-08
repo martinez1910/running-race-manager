@@ -67,6 +67,11 @@ public class MainWindow extends javax.swing.JFrame {
         btn_race_finished.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_race_finished.text")); // NOI18N
         btn_race_finished.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_race_finished.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_race_finished.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_race_finishedActionPerformed(evt);
+            }
+        });
         pn_main.add(btn_race_finished);
 
         btn_settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/settings_x64.png"))); // NOI18N
@@ -138,6 +143,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void btn_raceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_raceActionPerformed
         Utils.allignAndShowWindow(RaceManager.getInstance(), this);
     }//GEN-LAST:event_btn_raceActionPerformed
+
+    private void btn_race_finishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_race_finishedActionPerformed
+        Utils.allignAndShowWindow(FinishedRaceManager.getInstance(), this);
+    }//GEN-LAST:event_btn_race_finishedActionPerformed
 
     
     private void myInitComponents() {

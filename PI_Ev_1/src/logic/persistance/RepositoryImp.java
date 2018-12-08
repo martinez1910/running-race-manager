@@ -77,6 +77,11 @@ public class RepositoryImp implements IRepository{
     }
     
     @Override
+    public Runner getNonRemovedRunner(int pos){
+        return getNonRemovedRunners().get(pos);
+    }
+    
+    @Override
     public List<Runner> getNonRemovedRunners(){
         List<Runner> nonRemovedRunners = new ArrayList<>();
         for(Runner runner : runners)
@@ -168,7 +173,7 @@ public class RepositoryImp implements IRepository{
     
     @Override
     public Race getUnfinishedRace(int pos) {
-        return (Race) util.MyUtil.copy(getUnfinishedRaces().get(pos));
+        return getUnfinishedRaces().get(pos);
     }
 
     @Override
@@ -176,6 +181,20 @@ public class RepositoryImp implements IRepository{
         List<Race> racesCopy = new ArrayList<>();
         for(Race race : races)
             if(!race.isFinished())
+                racesCopy.add((Race) util.MyUtil.copy(race));
+        return racesCopy;
+    }
+    
+    @Override
+    public Race getFinishedRace(int pos){
+        return getFinishedRaces().get(pos);
+    }
+    
+    @Override
+    public List<Race> getFinishedRaces(){
+        List<Race> racesCopy = new ArrayList<>();
+        for(Race race : races)
+            if(race.isFinished())
                 racesCopy.add((Race) util.MyUtil.copy(race));
         return racesCopy;
     }
