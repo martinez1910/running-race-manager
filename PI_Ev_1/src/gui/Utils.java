@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
 public class Utils {
     
     /**
-     * Sets the frame in the centre of the given JFrame (parent) and sets it visible.
-     * Useful to use like 'allignAndShowFrame(new JFrame(), this)'.
+     * Sets the frame in the centre of the given Window (parent) and sets it visible.
+     * Useful to use like <code>allignAndShowWindow(new JFrame(), this)</code>.
      * @param frame
      * @param parent
      */
-    protected static void allignAndShowFrame(Window frame, Window parent){
+    protected static void allignAndShowWindow(Window frame, Window parent){
         if(frame instanceof JDialog)
             frame.pack();
         frame.setLocationRelativeTo(parent);
@@ -47,6 +47,22 @@ public class Utils {
     
     protected static void messageErrorAddRunnerInRace(Component parent){
         JOptionPane.showMessageDialog(parent, "No puede añadir más participantes. Incremente el número máximo de participantes permitidos.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    protected static int messageConfirmationStartRace(Component parent){
+       return JOptionPane.showOptionDialog(parent, "¿Está seguro que desea iniciar la carrera?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+    }
+    
+    protected static void messageErrorStartRace(Component parent){
+        JOptionPane.showMessageDialog(parent, "No puede iniciar una carrera que tenga menos de 2 participantes.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    protected static int messageConfirmationFinishRace(Component parent){
+       return JOptionPane.showOptionDialog(parent, "¿Está seguro que desea finalizar esta carrera?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+    }
+    
+    protected static int messageConfirmationCancelRace(Component parent){
+       return JOptionPane.showOptionDialog(parent, "¿Está seguro que desea cancelar esta carrera? Se perderán todos los datos.", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
     }
     
     protected static void lockCursor(Component component){

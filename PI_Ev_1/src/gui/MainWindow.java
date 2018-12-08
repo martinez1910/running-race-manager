@@ -120,7 +120,7 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_runnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_runnerActionPerformed
-        Utils.allignAndShowFrame(RunnerManager.getInstance(), this);        
+        Utils.allignAndShowWindow(RunnerManager.getInstance(), this);        
     }//GEN-LAST:event_btn_runnerActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -136,7 +136,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exitActionPerformed
 
     private void btn_raceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_raceActionPerformed
-        Utils.allignAndShowFrame(RaceManager.getInstance(), this);
+        Utils.allignAndShowWindow(RaceManager.getInstance(), this);
     }//GEN-LAST:event_btn_raceActionPerformed
 
     

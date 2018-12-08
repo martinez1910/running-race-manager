@@ -128,7 +128,7 @@ public class RunnerManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
-        Utils.allignAndShowFrame(new RunnerForm(this, null), this);
+        Utils.allignAndShowWindow(new RunnerForm(this, null), this);
     }//GEN-LAST:event_btn_addActionPerformed
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
@@ -142,7 +142,7 @@ public class RunnerManager extends javax.swing.JFrame {
             return;
         }
         Runner runner = RepositoryImp.getInstance().getRunner(tb_runners.convertRowIndexToModel(selectedRow));
-        Utils.allignAndShowFrame(new RunnerForm(this, runner), this);
+        Utils.allignAndShowWindow(new RunnerForm(this, runner), this);
     }//GEN-LAST:event_btn_editActionPerformed
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed

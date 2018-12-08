@@ -22,6 +22,8 @@ public interface IRepository {
     public boolean updateRace(Race race, Race updatedRace);
     public Race getRace(int pos);
     public List<Race> getRaces();
+    public Race getUnfinishedRace(int pos);
+    public List<Race> getUnfinishedRaces();
     public int getAvailableNumRace();
     
     public boolean addRunnerInRace(RunnerInRace runnerInRace);

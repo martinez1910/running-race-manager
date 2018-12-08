@@ -167,6 +167,20 @@ public class RepositoryImp implements IRepository{
     }
     
     @Override
+    public Race getUnfinishedRace(int pos) {
+        return (Race) util.MyUtil.copy(getUnfinishedRaces().get(pos));
+    }
+
+    @Override
+    public List<Race> getUnfinishedRaces() {
+        List<Race> racesCopy = new ArrayList<>();
+        for(Race race : races)
+            if(!race.isFinished())
+                racesCopy.add((Race) util.MyUtil.copy(race));
+        return racesCopy;
+    }
+    
+    @Override
     public int getAvailableNumRace(){
         if(this.races.isEmpty()) return 0;        
         return races.get(races.size()-1).getNumRace()+1;

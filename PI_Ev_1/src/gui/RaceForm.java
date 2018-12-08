@@ -305,7 +305,7 @@ public class RaceForm extends javax.swing.JDialog {
             Utils.messageErrorAddRunnerInRace(this);
             return;
         }
-        Utils.allignAndShowFrame(new RunnerInRaceForm(parent, this, RepositoryImp.getInstance().getRunnersNotInList(this.runnersInRace)), this);
+        Utils.allignAndShowWindow(new RunnerInRaceForm(parent, this, RepositoryImp.getInstance().getRunnersNotInList(this.runnersInRace)), this);
     }//GEN-LAST:event_btn_add_runnerActionPerformed
 
     private void btn_remove_runnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_remove_runnerActionPerformed

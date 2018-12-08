@@ -1,9 +1,11 @@
 package gui;
 
 import gui.tablemodel.RaceTableModel;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 import logic.obj.Race;
+import logic.obj.RunnerInRace;
 import logic.persistance.RepositoryImp;
 
 public class RaceManager extends javax.swing.JFrame {
@@ -44,9 +46,10 @@ public class RaceManager extends javax.swing.JFrame {
         btn_start = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.title")); // NOI18N
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_group_x64.png")).getImage());
+        setMinimumSize(new java.awt.Dimension(930, 300));
 
         scrpn_table.setPreferredSize(new java.awt.Dimension(350, 175));
 
@@ -111,6 +114,11 @@ public class RaceManager extends javax.swing.JFrame {
         btn_start.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_start.text")); // NOI18N
         btn_start.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_start.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_startActionPerformed(evt);
+            }
+        });
         pn_start_button.add(btn_start);
 
         jButton2.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.jButton2.text")); // NOI18N
@@ -146,7 +154,7 @@ public class RaceManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
-        Utils.allignAndShowFrame(new RaceForm(this, null), this);
+        Utils.allignAndShowWindow(new RaceForm(this, null), this);
     }//GEN-LAST:event_btn_addActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
@@ -155,8 +163,8 @@ public class RaceManager extends javax.swing.JFrame {
             Utils.messageInformationSelectRace(this);
             return;
         }
-        Race race = RepositoryImp.getInstance().getRace(tb_races.convertRowIndexToModel(selectedRow));
-        Utils.allignAndShowFrame(new RaceForm(this, race), this);
+        Race race = RepositoryImp.getInstance().getUnfinishedRace(tb_races.convertRowIndexToModel(selectedRow));
+        Utils.allignAndShowWindow(new RaceForm(this, race), this);
     }//GEN-LAST:event_btn_editActionPerformed
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
@@ -166,7 +174,7 @@ public class RaceManager extends javax.swing.JFrame {
             return;
         }
         if(Utils.messageConfirmationRemoveRace(this) == JOptionPane.YES_OPTION){
-            Race race = RepositoryImp.getInstance().getRaces().get(tb_races.convertRowIndexToModel(selectedRow));
+            Race race = RepositoryImp.getInstance().getUnfinishedRaces().get(tb_races.convertRowIndexToModel(selectedRow));
             RepositoryImp.getInstance().removeRace(race);
             updateTable();
         }
@@ -175,6 +183,25 @@ public class RaceManager extends javax.swing.JFrame {
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
         this.dispose();
     }//GEN-LAST:event_btn_backActionPerformed
+
+    private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
+        int selectedRow = tb_races.getSelectedRow();
+        if(selectedRow == -1){
+            Utils.messageInformationSelectRace(this);
+            return;
+        }
+        
+        Race race = RepositoryImp.getInstance().getUnfinishedRaces().get(tb_races.convertRowIndexToModel(selectedRow));
+        List<RunnerInRace> runnersInRace = RepositoryImp.getInstance().getRunnersInRace(race);
+        
+        if(runnersInRace.size() < 2){
+            Utils.messageErrorStartRace(this);
+            return;
+        }
+        
+        if(Utils.messageConfirmationStartRace(this) == JOptionPane.YES_OPTION)
+            Utils.allignAndShowWindow(new RaceStart(this, race, runnersInRace), this);
+    }//GEN-LAST:event_btn_startActionPerformed
 
     private void myInitComponents(){
         jButton2.setVisible(false);
@@ -219,7 +246,7 @@ public class RaceManager extends javax.swing.JFrame {
 
     protected void updateTable(){
         Utils.lockCursor(this);
-        RaceTableModel raceTableModel = new RaceTableModel(RepositoryImp.getInstance().getRaces());
+        RaceTableModel raceTableModel = new RaceTableModel(RepositoryImp.getInstance().getUnfinishedRaces());
         tb_races.setModel(raceTableModel);
         TableRowSorter<RaceTableModel> sorter = new TableRowSorter<>(raceTableModel);
         tb_races.setRowSorter(sorter);
