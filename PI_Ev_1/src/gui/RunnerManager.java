@@ -65,6 +65,7 @@ public class RunnerManager extends javax.swing.JFrame {
         pn_buttons.setLayout(new java.awt.GridLayout(1, 4, 18, 0));
 
         btn_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png"))); // NOI18N
+        btn_add.setMnemonic('a');
         btn_add.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_add.text")); // NOI18N
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +75,7 @@ public class RunnerManager extends javax.swing.JFrame {
         pn_buttons.add(btn_add);
 
         btn_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png"))); // NOI18N
+        btn_edit.setMnemonic('d');
         btn_edit.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_edit.text")); // NOI18N
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +85,7 @@ public class RunnerManager extends javax.swing.JFrame {
         pn_buttons.add(btn_edit);
 
         btn_remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
+        btn_remove.setMnemonic('e');
         btn_remove.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_remove.text")); // NOI18N
         btn_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +98,7 @@ public class RunnerManager extends javax.swing.JFrame {
         pn_buttons.add(jButton4);
 
         btn_back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/back_x12.png"))); // NOI18N
+        btn_back.setMnemonic('v');
         btn_back.setText(org.openide.util.NbBundle.getMessage(RunnerManager.class, "RunnerManager.btn_back.text")); // NOI18N
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

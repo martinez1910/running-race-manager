@@ -51,6 +51,7 @@ public class FinishedRaceForm extends javax.swing.JDialog {
         pn_buttons.setLayout(new java.awt.GridLayout(1, 2, 18, 0));
 
         btn_back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/back_x12.png"))); // NOI18N
+        btn_back.setMnemonic('v');
         btn_back.setText(org.openide.util.NbBundle.getMessage(FinishedRaceForm.class, "FinishedRaceForm.btn_back.text")); // NOI18N
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

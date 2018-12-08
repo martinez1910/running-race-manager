@@ -61,6 +61,7 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         pn_buttons.setLayout(new java.awt.GridLayout(1, 4, 18, 0));
 
         btn_view.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/report_x16.png"))); // NOI18N
+        btn_view.setMnemonic('e');
         btn_view.setText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.btn_view.text")); // NOI18N
         btn_view.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +71,7 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         pn_buttons.add(btn_view);
 
         btn_back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/back_x12.png"))); // NOI18N
+        btn_back.setMnemonic('v');
         btn_back.setText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.btn_back.text")); // NOI18N
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

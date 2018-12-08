@@ -42,6 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
         pn_main.setLayout(new java.awt.GridLayout(2, 3, 12, 12));
 
         btn_runner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_woman_x64.png"))); // NOI18N
+        btn_runner.setMnemonic('g');
         btn_runner.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_runner.text")); // NOI18N
         btn_runner.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_runner.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -53,6 +54,7 @@ public class MainWindow extends javax.swing.JFrame {
         pn_main.add(btn_runner);
 
         btn_race.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_group_x64.png"))); // NOI18N
+        btn_race.setMnemonic('e');
         btn_race.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_race.text")); // NOI18N
         btn_race.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_race.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -64,6 +66,7 @@ public class MainWindow extends javax.swing.JFrame {
         pn_main.add(btn_race);
 
         btn_race_finished.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_finish_x64.png"))); // NOI18N
+        btn_race_finished.setMnemonic('c');
         btn_race_finished.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_race_finished.text")); // NOI18N
         btn_race_finished.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_race_finished.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -75,6 +78,7 @@ public class MainWindow extends javax.swing.JFrame {
         pn_main.add(btn_race_finished);
 
         btn_settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/settings_x64.png"))); // NOI18N
+        btn_settings.setMnemonic('a');
         btn_settings.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_settings.text")); // NOI18N
         btn_settings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_settings.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -94,6 +98,7 @@ public class MainWindow extends javax.swing.JFrame {
         pn_main.add(jButton5);
 
         btn_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/exit_x64.png"))); // NOI18N
+        btn_exit.setMnemonic('s');
         btn_exit.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_exit.text")); // NOI18N
         btn_exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_exit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

@@ -175,6 +175,7 @@ public class RaceForm extends javax.swing.JDialog {
         pn_buttons.add(btn_add_update);
 
         btn_cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
+        btn_cancel.setMnemonic('c');
         btn_cancel.setText(org.openide.util.NbBundle.getMessage(RaceForm.class, "RaceForm.btn_cancel.text")); // NOI18N
         btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +201,7 @@ public class RaceForm extends javax.swing.JDialog {
         scrpn_runners.setViewportView(tb_runners);
 
         btn_add_runner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png"))); // NOI18N
+        btn_add_runner.setMnemonic('m');
         btn_add_runner.setText(org.openide.util.NbBundle.getMessage(RaceForm.class, "RaceForm.btn_add_runner.text")); // NOI18N
         btn_add_runner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +210,7 @@ public class RaceForm extends javax.swing.JDialog {
         });
 
         btn_remove_runner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
+        btn_remove_runner.setMnemonic('x');
         btn_remove_runner.setText(org.openide.util.NbBundle.getMessage(RaceForm.class, "RaceForm.btn_remove_runner.text")); // NOI18N
         btn_remove_runner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +325,15 @@ public class RaceForm extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_remove_runnerActionPerformed
 
     private void myInitComponents() {
+        lbl_name.setDisplayedMnemonic('n');
+        lbl_name.setLabelFor(txt_name);
+        lbl_location.setDisplayedMnemonic('l');
+        lbl_location.setLabelFor(txt_location);
+        lbl_date.setDisplayedMnemonic('f');
+        lbl_date.setLabelFor(spn_date);
+        lbl_maxRunners.setDisplayedMnemonic('o');
+        lbl_maxRunners.setLabelFor(spn_maxRunners);
+        
         Date date = new Date();
         Date dateNextHour = new Date();
         dateNextHour.setTime(date.getTime()+(1000*60*60));
@@ -334,7 +346,6 @@ public class RaceForm extends javax.swing.JDialog {
         updateTable();
         
         addValidation();
-        
     }
 
 //    /**
@@ -384,6 +395,7 @@ public class RaceForm extends javax.swing.JDialog {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")).getImage());
         btn_add_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")));
         btn_add_update.setText(org.openide.util.NbBundle.getMessage(RaceForm.class, "RaceManager.btn_add.text"));
+        btn_add_update.setMnemonic('a');
         
         btn_add_update.setEnabled(false);
         
@@ -395,6 +407,7 @@ public class RaceForm extends javax.swing.JDialog {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png")).getImage());
         btn_add_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png")));
         btn_add_update.setText(org.openide.util.NbBundle.getMessage(RaceForm.class, "RaceManager.btn_edit.text"));
+        btn_add_update.setMnemonic('u');
         
         txt_name.setText(race.getName());
         txt_location.setText(race.getLocation());

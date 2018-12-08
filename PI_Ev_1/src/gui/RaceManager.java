@@ -70,6 +70,7 @@ public class RaceManager extends javax.swing.JFrame {
         pn_buttons.setLayout(new java.awt.GridLayout(1, 4, 18, 0));
 
         btn_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png"))); // NOI18N
+        btn_add.setMnemonic('a');
         btn_add.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_add.text")); // NOI18N
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +80,7 @@ public class RaceManager extends javax.swing.JFrame {
         pn_buttons.add(btn_add);
 
         btn_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png"))); // NOI18N
+        btn_edit.setMnemonic('d');
         btn_edit.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_edit.text")); // NOI18N
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +90,7 @@ public class RaceManager extends javax.swing.JFrame {
         pn_buttons.add(btn_edit);
 
         btn_remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
+        btn_remove.setMnemonic('e');
         btn_remove.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_remove.text")); // NOI18N
         btn_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +103,7 @@ public class RaceManager extends javax.swing.JFrame {
         pn_buttons.add(jButton4);
 
         btn_back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/back_x12.png"))); // NOI18N
+        btn_back.setMnemonic('v');
         btn_back.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_back.text")); // NOI18N
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +115,7 @@ public class RaceManager extends javax.swing.JFrame {
         pn_start_button.setLayout(new java.awt.GridLayout(2, 1));
 
         btn_start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_start_x64.png"))); // NOI18N
+        btn_start.setMnemonic('i');
         btn_start.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.btn_start.text")); // NOI18N
         btn_start.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_start.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

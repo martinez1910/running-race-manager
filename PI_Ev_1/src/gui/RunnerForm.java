@@ -172,6 +172,7 @@ public class RunnerForm extends javax.swing.JDialog {
         pn_buttons.add(btn_add_update);
 
         btn_cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
+        btn_cancel.setMnemonic('c');
         btn_cancel.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerForm.btn_cancel.text")); // NOI18N
         btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,6 +235,17 @@ public class RunnerForm extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_add_updateActionPerformed
 
     private void myInitComponents() {
+        lbl_name.setDisplayedMnemonic('n');
+        lbl_name.setLabelFor(txt_name);
+        lbl_id.setDisplayedMnemonic('d');
+        lbl_id.setLabelFor(txt_id);
+        lbl_date.setDisplayedMnemonic('f');
+        lbl_date.setLabelFor(dpk_date);
+        lbl_address.setDisplayedMnemonic('i');
+        lbl_address.setLabelFor(txt_address);
+        lbl_phone.setDisplayedMnemonic('t');
+        lbl_phone.setLabelFor(txt_phone);
+        
         if(runner == null)
             initAddRunner();
         else
@@ -291,6 +303,7 @@ public class RunnerForm extends javax.swing.JDialog {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")).getImage());
         btn_add_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")));
         btn_add_update.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerManager.btn_add.text"));
+        btn_add_update.setMnemonic('a');
         
         dpk_date.setDate(new Date());
         
@@ -302,6 +315,7 @@ public class RunnerForm extends javax.swing.JDialog {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png")).getImage());
         btn_add_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png")));
         btn_add_update.setText(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerManager.btn_edit.text"));
+        btn_add_update.setMnemonic('u');
         
         txt_name.setText(runner.getName());
         txt_id.setText(runner.getId());

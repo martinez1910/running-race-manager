@@ -78,6 +78,7 @@ public class RaceStart extends javax.swing.JDialog {
         pn_buttons.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
         btn_finish.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/flag_finish_2_x16.png"))); // NOI18N
+        btn_finish.setMnemonic('f');
         btn_finish.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.btn_finish.text")); // NOI18N
         btn_finish.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +88,7 @@ public class RaceStart extends javax.swing.JDialog {
         pn_buttons.add(btn_finish);
 
         btn_cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
+        btn_cancel.setMnemonic('c');
         btn_cancel.setText(org.openide.util.NbBundle.getMessage(RaceStart.class, "RaceStart.btn_cancel.text")); // NOI18N
         btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

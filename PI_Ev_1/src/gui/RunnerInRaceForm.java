@@ -67,6 +67,7 @@ public class RunnerInRaceForm extends javax.swing.JDialog {
         lbl_text.setText(org.openide.util.NbBundle.getMessage(RunnerInRaceForm.class, "RunnerInRaceForm.lbl_text.text")); // NOI18N
 
         btn_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png"))); // NOI18N
+        btn_add.setMnemonic('a');
         btn_add.setText(org.openide.util.NbBundle.getMessage(RunnerInRaceForm.class, "RunnerInRaceForm.btn_add.text")); // NOI18N
         btn_add.setDefaultCapable(false);
         btn_add.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +77,7 @@ public class RunnerInRaceForm extends javax.swing.JDialog {
         });
 
         btn_cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/remove_x12.png"))); // NOI18N
+        btn_cancel.setMnemonic('c');
         btn_cancel.setText(org.openide.util.NbBundle.getMessage(RunnerInRaceForm.class, "RunnerInRaceForm.btn_cancel.text")); // NOI18N
         btn_cancel.setToolTipText(org.openide.util.NbBundle.getMessage(RunnerInRaceForm.class, "RunnerInRaceForm.btn_cancel.toolTipText")); // NOI18N
         btn_cancel.setDefaultCapable(false);
