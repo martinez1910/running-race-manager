@@ -1,6 +1,10 @@
 package gui;
 
 import gui.tablemodel.RaceTableModel;
+import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 import logic.obj.Race;
@@ -35,6 +39,13 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         pn_buttons = new javax.swing.JPanel();
         btn_view = new javax.swing.JButton();
         btn_back = new javax.swing.JButton();
+        mn_bar = new javax.swing.JMenuBar();
+        mn_program = new javax.swing.JMenu();
+        mntm_exit = new javax.swing.JMenuItem();
+        mn_help = new javax.swing.JMenu();
+        mntm_help = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mntm_about = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.title")); // NOI18N
@@ -80,6 +91,44 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         });
         pn_buttons.add(btn_back);
 
+        mn_program.setMnemonic('t');
+        mn_program.setText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.mn_program.text")); // NOI18N
+        mn_program.setToolTipText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.mn_program.toolTipText")); // NOI18N
+
+        mntm_exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        mntm_exit.setMnemonic('c');
+        mntm_exit.setText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.mntm_exit.text")); // NOI18N
+        mntm_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mntm_exitActionPerformed(evt);
+            }
+        });
+        mn_program.add(mntm_exit);
+
+        mn_bar.add(mn_program);
+
+        mn_help.setMnemonic('y');
+        mn_help.setText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.mn_help.text")); // NOI18N
+
+        mntm_help.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        mntm_help.setMnemonic('m');
+        mntm_help.setText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.mntm_help.text")); // NOI18N
+        mn_help.add(mntm_help);
+        mn_help.add(jSeparator2);
+
+        mntm_about.setMnemonic('a');
+        mntm_about.setText(org.openide.util.NbBundle.getMessage(FinishedRaceManager.class, "FinishedRaceManager.mntm_about.text")); // NOI18N
+        mntm_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mntm_aboutActionPerformed(evt);
+            }
+        });
+        mn_help.add(mntm_about);
+
+        mn_bar.add(mn_help);
+
+        setJMenuBar(mn_bar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +146,7 @@ public class FinishedRaceManager extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(pn_buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -120,8 +169,17 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         Utils.allignAndShowWindow(new FinishedRaceForm(this, race), this);
     }//GEN-LAST:event_btn_viewActionPerformed
 
+    private void mntm_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntm_exitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_mntm_exitActionPerformed
+
+    private void mntm_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntm_aboutActionPerformed
+        Utils.messageAbout(this);
+    }//GEN-LAST:event_mntm_aboutActionPerformed
+
     private void myInitComponents(){
         updateTable();
+        loadHelpDocs();
     }
     
     protected void updateTable(){
@@ -136,6 +194,21 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         sorter.setSortKeys(sortKeys);
         */
         Utils.unlockCursor(this);
+    }
+    
+    private void loadHelpDocs(){
+        try{
+            File file = new File("help" +File.separator +"help_set.hs");
+            URL url = file.toURI().toURL();
+
+            HelpSet hs = new HelpSet(getClass().getClassLoader(), url);
+            HelpBroker hb = hs.createHelpBroker();
+            
+            hb.enableHelpKey(getRootPane(), "finished_race_manager", hs);
+            hb.enableHelpOnButton(mntm_help, "finished_race_manager", hs);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
 //    /**
@@ -176,6 +249,13 @@ public class FinishedRaceManager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_view;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuBar mn_bar;
+    private javax.swing.JMenu mn_help;
+    private javax.swing.JMenu mn_program;
+    private javax.swing.JMenuItem mntm_about;
+    private javax.swing.JMenuItem mntm_exit;
+    private javax.swing.JMenuItem mntm_help;
     private javax.swing.JPanel pn_buttons;
     private javax.swing.JScrollPane scrpn_table;
     private javax.swing.JTable tb_races;

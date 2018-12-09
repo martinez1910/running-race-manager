@@ -1,0 +1,10 @@
+<index version="1.0">
+	<indexitem text="Gestión de Carreras App" target="app">
+		<indexitem text="Ventana Principal" target="main">
+			<indexitem text="Gestión de Corredores" target="runner_manager"/>
+			<indexitem text="Gestión de Carreras" target="race_manager"/>
+			<indexitem text="Carreras Finalizadas" target="finished_race_manager"/>
+			<indexitem text="Ajustes" target="settings"/>
+		</indexitem>
+	</indexitem>
+</index>

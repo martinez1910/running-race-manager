@@ -1,0 +1,8 @@
+<map version="1.0">
+	<mapID target="app" url="html/app.html"/>
+	<mapID target="main" url="html/main.html"/>
+	<mapID target="runner_manager" url="html/runner_manager.html"/>
+	<mapID target="race_manager" url="html/race_manager.html"/>
+	<mapID target="finished_race_manager" url="html/finished_race_manager.html"/>
+	<mapID target="settings" url="html/settings.html"/>
+</map>

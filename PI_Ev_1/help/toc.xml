@@ -1,0 +1,10 @@
+<toc version="1.0">
+	<tocitem text="Gestión de Carreras App" target="app">
+		<tocitem text="Ventana Principal" target="main">
+			<tocitem text="Gestión de Corredores" target="runner_manager"/>
+			<tocitem text="Gestión de Carreras" target="race_manager"/>
+			<tocitem text="Carreras Finalizadas" target="finished_race_manager"/>
+			<tocitem text="Ajustes" target="settings"/>
+		</tocitem>
+	</tocitem>
+</toc>

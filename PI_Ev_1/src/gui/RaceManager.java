@@ -1,7 +1,11 @@
 package gui;
 
 import gui.tablemodel.RaceTableModel;
+import java.io.File;
+import java.net.URL;
 import java.util.List;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 import logic.obj.Race;
@@ -45,11 +49,18 @@ public class RaceManager extends javax.swing.JFrame {
         pn_start_button = new javax.swing.JPanel();
         btn_start = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        mn_bar = new javax.swing.JMenuBar();
+        mn_program = new javax.swing.JMenu();
+        mntm_exit = new javax.swing.JMenuItem();
+        mn_help = new javax.swing.JMenu();
+        mntm_help = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mntm_about = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.title")); // NOI18N
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/runner_group_x64.png")).getImage());
-        setMinimumSize(new java.awt.Dimension(930, 300));
+        setMinimumSize(new java.awt.Dimension(930, 330));
 
         scrpn_table.setPreferredSize(new java.awt.Dimension(350, 175));
 
@@ -129,6 +140,44 @@ public class RaceManager extends javax.swing.JFrame {
         jButton2.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.jButton2.text")); // NOI18N
         pn_start_button.add(jButton2);
 
+        mn_program.setMnemonic('t');
+        mn_program.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.mn_program.text")); // NOI18N
+        mn_program.setToolTipText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.mn_program.toolTipText")); // NOI18N
+
+        mntm_exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        mntm_exit.setMnemonic('c');
+        mntm_exit.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.mntm_exit.text")); // NOI18N
+        mntm_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mntm_exitActionPerformed(evt);
+            }
+        });
+        mn_program.add(mntm_exit);
+
+        mn_bar.add(mn_program);
+
+        mn_help.setMnemonic('y');
+        mn_help.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.mn_help.text")); // NOI18N
+
+        mntm_help.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        mntm_help.setMnemonic('m');
+        mntm_help.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.mntm_help.text")); // NOI18N
+        mn_help.add(mntm_help);
+        mn_help.add(jSeparator2);
+
+        mntm_about.setMnemonic('a');
+        mntm_about.setText(org.openide.util.NbBundle.getMessage(RaceManager.class, "RaceManager.mntm_about.text")); // NOI18N
+        mntm_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mntm_aboutActionPerformed(evt);
+            }
+        });
+        mn_help.add(mntm_about);
+
+        mn_bar.add(mn_help);
+
+        setJMenuBar(mn_bar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,7 +197,7 @@ public class RaceManager extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(scrpn_table, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pn_start_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pn_buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,10 +257,19 @@ public class RaceManager extends javax.swing.JFrame {
             Utils.allignAndShowWindow(new RaceStart(this, race, runnersInRace), this);
     }//GEN-LAST:event_btn_startActionPerformed
 
+    private void mntm_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntm_exitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_mntm_exitActionPerformed
+
+    private void mntm_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntm_aboutActionPerformed
+        Utils.messageAbout(this);
+    }//GEN-LAST:event_mntm_aboutActionPerformed
+
     private void myInitComponents(){
         jButton2.setVisible(false);
         jButton4.setVisible(false);
         updateTable();
+        loadHelpDocs();
     }
     
 //    /**
@@ -262,6 +320,22 @@ public class RaceManager extends javax.swing.JFrame {
         */
         Utils.unlockCursor(this);
     }
+    
+    private void loadHelpDocs(){
+        try{
+            File file = new File("help" +File.separator +"help_set.hs");
+            URL url = file.toURI().toURL();
+
+            HelpSet hs = new HelpSet(getClass().getClassLoader(), url);
+            HelpBroker hb = hs.createHelpBroker();
+            
+            hb.enableHelpKey(getRootPane(), "race_manager", hs);
+            hb.enableHelpOnButton(mntm_help, "race_manager", hs);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
     private javax.swing.JButton btn_back;
@@ -270,6 +344,13 @@ public class RaceManager extends javax.swing.JFrame {
     private javax.swing.JButton btn_start;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuBar mn_bar;
+    private javax.swing.JMenu mn_help;
+    private javax.swing.JMenu mn_program;
+    private javax.swing.JMenuItem mntm_about;
+    private javax.swing.JMenuItem mntm_exit;
+    private javax.swing.JMenuItem mntm_help;
     private javax.swing.JPanel pn_buttons;
     private javax.swing.JPanel pn_start_button;
     private javax.swing.JScrollPane scrpn_table;

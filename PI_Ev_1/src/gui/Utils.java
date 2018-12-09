@@ -65,6 +65,10 @@ public class Utils {
        return JOptionPane.showOptionDialog(parent, "¿Está seguro que desea cancelar esta carrera? Se perderán todos los datos.", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
     }
     
+    protected static void messageAbout(Component parent){
+       JOptionPane.showMessageDialog(parent, "© 2018 Alejandro Martínez Remis, All Rights Reserved", "Información",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     protected static void lockCursor(Component component){
         component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     }

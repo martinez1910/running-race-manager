@@ -2,7 +2,11 @@ package gui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.net.URL;
 import java.util.Locale;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 import logic.persistance.RepositoryImp;
 
@@ -32,6 +36,13 @@ public class MainWindow extends javax.swing.JFrame {
         btn_settings = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         btn_exit = new javax.swing.JButton();
+        mn_bar = new javax.swing.JMenuBar();
+        mn_program = new javax.swing.JMenu();
+        mntm_exit = new javax.swing.JMenuItem();
+        mn_help = new javax.swing.JMenu();
+        mntm_help = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mntm_about = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.title")); // NOI18N
@@ -109,6 +120,44 @@ public class MainWindow extends javax.swing.JFrame {
         });
         pn_main.add(btn_exit);
 
+        mn_program.setMnemonic('p');
+        mn_program.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.mn_program.text")); // NOI18N
+        mn_program.setToolTipText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.mn_program.toolTipText")); // NOI18N
+
+        mntm_exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        mntm_exit.setMnemonic('s');
+        mntm_exit.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.mntm_exit.text")); // NOI18N
+        mntm_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mntm_exitActionPerformed(evt);
+            }
+        });
+        mn_program.add(mntm_exit);
+
+        mn_bar.add(mn_program);
+
+        mn_help.setMnemonic('y');
+        mn_help.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.mn_help.text")); // NOI18N
+
+        mntm_help.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        mntm_help.setMnemonic('m');
+        mntm_help.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.mntm_help.text")); // NOI18N
+        mn_help.add(mntm_help);
+        mn_help.add(jSeparator2);
+
+        mntm_about.setMnemonic('a');
+        mntm_about.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.mntm_about.text")); // NOI18N
+        mntm_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mntm_aboutActionPerformed(evt);
+            }
+        });
+        mn_help.add(mntm_about);
+
+        mn_bar.add(mn_help);
+
+        setJMenuBar(mn_bar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,6 +202,14 @@ public class MainWindow extends javax.swing.JFrame {
         Utils.allignAndShowWindow(FinishedRaceManager.getInstance(), this);
     }//GEN-LAST:event_btn_race_finishedActionPerformed
 
+    private void mntm_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntm_exitActionPerformed
+        exit();
+    }//GEN-LAST:event_mntm_exitActionPerformed
+
+    private void mntm_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntm_aboutActionPerformed
+        Utils.messageAbout(this);
+    }//GEN-LAST:event_mntm_aboutActionPerformed
+
     
     private void myInitComponents() {
         Locale locale = new Locale("es", "ES"); 
@@ -168,6 +225,8 @@ public class MainWindow extends javax.swing.JFrame {
                 exit();
             }
         });
+        
+        loadHelpDocs();
     }
     
     /**
@@ -209,6 +268,21 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    private void loadHelpDocs(){
+        try{
+            File file = new File("help" +File.separator +"help_set.hs");
+            URL url = file.toURI().toURL();
+
+            HelpSet hs = new HelpSet(getClass().getClassLoader(), url);
+            HelpBroker hb = hs.createHelpBroker();
+            
+            hb.enableHelpKey(getRootPane(), "main", hs);
+            hb.enableHelpOnButton(mntm_help, "main", hs);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_race;
@@ -216,6 +290,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btn_runner;
     private javax.swing.JButton btn_settings;
     private javax.swing.JButton jButton5;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuBar mn_bar;
+    private javax.swing.JMenu mn_help;
+    private javax.swing.JMenu mn_program;
+    private javax.swing.JMenuItem mntm_about;
+    private javax.swing.JMenuItem mntm_exit;
+    private javax.swing.JMenuItem mntm_help;
     private javax.swing.JPanel pn_main;
     // End of variables declaration//GEN-END:variables
 }
