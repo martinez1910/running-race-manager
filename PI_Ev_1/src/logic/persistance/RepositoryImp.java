@@ -10,6 +10,10 @@ import logic.obj.Race;
 import logic.obj.Runner;
 import logic.obj.RunnerInRace;
 
+/**
+ * The implementation of the repository
+ * @author Alejandro Martínez Remis
+ */
 public class RepositoryImp implements IRepository{
     private final static long DEFAULT_AUTOMATIC_PERSISTANCE_INTERVAL = 30 * 60 * 1000;
     
@@ -301,6 +305,10 @@ public class RepositoryImp implements IRepository{
         fileManager.persistConfiguration(this.configuration);
     }
     
+    /**
+     * Creates a thread that calls {@link persist() persist()} periodically given 
+     * the settings of the application.
+     */
     private void automaticPersistance(){
         TimerTask timerTask = new TimerTask() {
             @Override

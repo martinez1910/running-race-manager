@@ -3,9 +3,11 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
@@ -17,16 +19,18 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import logic.persistance.RepositoryImp;
 
+/**
+ * Window to change the settings of the application; after modifying them they
+ * will go back to their original state until the application is restarted.
+ * @author Alejandro Martínez Remis
+ */
 public class Settings extends javax.swing.JFrame {
     private static Settings instance = null;
-    private final Configuration config;
+    private final Configuration configuration;
 
-    /**
-     * Creates new form Settings
-     */
     private Settings() {
         initComponents();
-        this.config = RepositoryImp.getInstance().getConfiguration();
+        this.configuration = RepositoryImp.getInstance().getConfiguration();
         myInitComponents();
     }
     
@@ -196,8 +200,8 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cancelActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        Configuration config = new Configuration((String) cmb_theme.getSelectedItem(), sld_mins.getValue());
-        RepositoryImp.getInstance().setConfiguration(config);
+        Configuration conf = new Configuration((String) cmb_theme.getSelectedItem(), sld_mins.getValue());
+        RepositoryImp.getInstance().setConfiguration(conf);
         Utils.messageInformationReset(this);
         this.dispose();
         resetLookAndFeel();
@@ -239,73 +243,47 @@ public class Settings extends javax.swing.JFrame {
             }
         });
         
-        if(this.config != null){
-            cmb_theme.setSelectedItem(this.config.getLookAndFeel());
-            sld_mins.setValue(this.config.getMinutesAutoPersist());
+        if(this.configuration != null){
+            cmb_theme.setSelectedItem(this.configuration.getLookAndFeel());
+            sld_mins.setValue(this.configuration.getMinutesAutoPersist());
         }
         
         loadHelpDocs();
     }
     
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Settings().setVisible(true);
-//            }
-//        });
-//    }
-
-    
+    /**
+     * Sets back the previous configuration visually, but the changes remain
+     * after pressing the update button.
+     */
     private void resetLookAndFeel(){
-        if(config == null) return;
+        if(configuration == null) return;
         
-        cmb_theme.setSelectedItem(config.getLookAndFeel());
-        sld_mins.setValue(config.getMinutesAutoPersist());
+        cmb_theme.setSelectedItem(configuration.getLookAndFeel());
+        sld_mins.setValue(configuration.getMinutesAutoPersist());
         try{
             LookAndFeelInfo currentLFI;
             for(LookAndFeelInfo lfi : getInstalledLookAndFeels())
-                if(lfi.getName().equals(config.getLookAndFeel())){
+                if(lfi.getName().equals(configuration.getLookAndFeel())){
                     UIManager.setLookAndFeel(lfi.getClassName());
                     SwingUtilities.updateComponentTreeUI(cmb_theme.getRootPane());
                     break;
                 }
-        }catch(Throwable e){
+        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e){
             e.printStackTrace();
         }
     }
     
+    /**
+     * Resets the look and feel and closes the window.
+     */
     private void exit(){
         resetLookAndFeel();
         this.dispose();
     }
     
+    /**
+     * Loads JavaHelp documentation and associates components.
+     */
     private void loadHelpDocs(){
         try{
             File file = new File("help" +File.separator +"help_set.hs");
@@ -316,7 +294,7 @@ public class Settings extends javax.swing.JFrame {
             
             hb.enableHelpKey(getRootPane(), "settings", hs);
             hb.enableHelpOnButton(mntm_help, "settings", hs);
-        }catch(Exception e){
+        }catch(IllegalArgumentException | MalformedURLException | HelpSetException e){
             e.printStackTrace();
         }
     }

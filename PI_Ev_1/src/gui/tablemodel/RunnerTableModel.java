@@ -5,6 +5,10 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import logic.obj.Runner;
 
+/**
+ * Table model for runners.
+ * @author Alejandro Martínez Remis
+ */
 public class RunnerTableModel extends AbstractTableModel {
     private final List<Runner> runners;
     private final String[] columnNames = {"Nombre", "DNI", "Fecha de nacimiento", "Dirección", "Teléfono"};

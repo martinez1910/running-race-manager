@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Util class for the project (both CLI and GUI).
+ * @author Alejandro Martínez Remis
+ */
 public class MyUtil {
     
     /**
@@ -23,6 +27,8 @@ public class MyUtil {
     /**
      * Returns a copy of the object, or null if the object cannot
      * be serialized.
+     * @param orig The object to be copied
+     * @return The copy of the given object
      */
     public static Object copy(Object orig) {
         Object obj = null;
@@ -40,11 +46,8 @@ public class MyUtil {
                 new ByteArrayInputStream(bos.toByteArray()));
             obj = in.readObject();
         }
-        catch(IOException e) {
+        catch(IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        catch(ClassNotFoundException cnfe) {
-            cnfe.printStackTrace();
         }
         return obj;
     }

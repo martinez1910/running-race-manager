@@ -14,8 +14,9 @@ import javax.swing.JOptionPane;
 /**
  * Stopwatch button that starts the first time that is pressed and asks for
  * a runner number the following ones. Cannot be used if the race is longer
- * than 24 hours (it will start from zero).
- * @author Alejandro Martínez
+ * than 24 hours (it will start back from zero). It fires an event each time
+ * the button is pressed after the first time that returns a {@link gui.component.RunnerTime RunnerTime}
+ * @author Alejandro Martínez Remis
  */
 public class JStopwatch extends JButton implements Serializable{
     private Date startDate;
@@ -34,6 +35,9 @@ public class JStopwatch extends JButton implements Serializable{
         });
     }
     
+    /**
+     * Method that controls the logic when the button is pressed.
+     */
     private void onClick(){
         if(startDate == null){
             startDate = new Date();
@@ -50,6 +54,10 @@ public class JStopwatch extends JButton implements Serializable{
         }        
     }
     
+    /**
+     * Shows a dialog to the user to introduce the runner's number.
+     * @param elapsedTime The elapsed time in milliseconds
+     */
     private void askForRunner(long elapsedTime){
         String str;
         int number = -1;
@@ -68,6 +76,10 @@ public class JStopwatch extends JButton implements Serializable{
             listener.runnerGiven(new RunnerTime(number, elapsedTime));
     }
     
+    /**
+     * Adds a listener to the component.
+     * @param listener 
+     */
     public void addJStopwatchListener(JStopwatchListener listener){
         this.listener = listener;
     }

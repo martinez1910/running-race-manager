@@ -5,7 +5,10 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
+/**
+ * Represents a runner.
+ * @author Alejandro Martínez Remis
+ */
 public class Runner implements Serializable{
     private String name;
     private String id;

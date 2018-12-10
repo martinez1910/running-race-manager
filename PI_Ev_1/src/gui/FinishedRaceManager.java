@@ -2,15 +2,19 @@ package gui;
 
 import gui.tablemodel.RaceTableModel;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
-import javax.swing.JOptionPane;
+import javax.help.HelpSetException;
 import javax.swing.table.TableRowSorter;
 import logic.obj.Race;
-import logic.obj.Runner;
 import logic.persistance.RepositoryImp;
 
+/**
+ * Window that shows finished races.
+ * @author Alejandro Martínez Remis
+ */
 public class FinishedRaceManager extends javax.swing.JFrame {
     private static FinishedRaceManager instance = null;
     
@@ -182,6 +186,9 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         loadHelpDocs();
     }
     
+    /**
+     * Loads data into the JTable
+     */
     protected void updateTable(){
         Utils.lockCursor(this);
         RaceTableModel raceTableModel = new RaceTableModel(RepositoryImp.getInstance().getFinishedRaces());
@@ -196,6 +203,9 @@ public class FinishedRaceManager extends javax.swing.JFrame {
         Utils.unlockCursor(this);
     }
     
+    /**
+     * Loads JavaHelp documentation and associates components.
+     */
     private void loadHelpDocs(){
         try{
             File file = new File("help" +File.separator +"help_set.hs");
@@ -206,45 +216,11 @@ public class FinishedRaceManager extends javax.swing.JFrame {
             
             hb.enableHelpKey(getRootPane(), "finished_race_manager", hs);
             hb.enableHelpOnButton(mntm_help, "finished_race_manager", hs);
-        }catch(Exception e){
+        }catch(IllegalArgumentException | MalformedURLException | HelpSetException e){
             e.printStackTrace();
         }
     }
-    
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FinishedRaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FinishedRaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FinishedRaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FinishedRaceManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FinishedRaceManager().setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;

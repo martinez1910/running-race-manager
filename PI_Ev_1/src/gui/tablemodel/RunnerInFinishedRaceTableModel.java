@@ -4,6 +4,10 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import logic.obj.RunnerInRace;
 
+/**
+ * Table model for runners in finished races.
+ * @author Alejandro Martínez Remis
+ */
 public class RunnerInFinishedRaceTableModel extends AbstractTableModel {
     private final List<RunnerInRace> runnersInRace;
     private final String[] columnNames = {"Nombre", "Dorsal", "Posición", "Tiempo"};

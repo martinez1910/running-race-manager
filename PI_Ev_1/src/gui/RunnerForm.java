@@ -12,6 +12,10 @@ import org.netbeans.validation.api.builtin.stringvalidation.SpanishPhoneNumberVa
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 import org.netbeans.validation.api.ui.ValidationGroup;
 
+/**
+ * Window to create or update a runner.
+ * @author Alejandro Martínez Remis
+ */
 public class RunnerForm extends javax.swing.JDialog {
     private final RunnerManager parent;
     private final Runner runner;
@@ -256,48 +260,9 @@ public class RunnerForm extends javax.swing.JDialog {
         addValidation();
     }
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                RunnerForm dialog = new RunnerForm(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
-
+    /**
+     * Initializes the components to add an existing runner.
+     */
     private void initAddRunner() {
         this.setTitle(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerManager.btn_add.text") +" Corredor");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")).getImage());
@@ -310,6 +275,9 @@ public class RunnerForm extends javax.swing.JDialog {
         btn_add_update.setEnabled(false);
     }
 
+    /**
+     * Initializes the components to update an existing runner.
+     */
     private void initUpdateRunner() {
         this.setTitle(org.openide.util.NbBundle.getMessage(RunnerForm.class, "RunnerManager.btn_edit.text") +" Corredor");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png")).getImage());
@@ -324,6 +292,9 @@ public class RunnerForm extends javax.swing.JDialog {
         txt_phone.setText(runner.getPhoneNumber());
     }
     
+    /**
+     * Adds validation to the user's input using an external library.
+     */
      private void addValidation() {
          ValidationGroup group = vpn_validation.getValidationGroup();
          group.add(txt_phone, new SpanishPhoneNumberValidator());

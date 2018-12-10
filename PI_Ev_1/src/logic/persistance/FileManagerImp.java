@@ -13,6 +13,10 @@ import logic.obj.Race;
 import logic.obj.Runner;
 import logic.obj.RunnerInRace;
 
+/**
+ * The implementation of the file system.
+ * @author Alejandro Martínez Remis
+ */
 public class FileManagerImp implements IFileManager {
     private final static String FILENAME_RUNNERS = "runners.csv";
     private final static String FILENAME_RACES = "races.csv";
@@ -38,6 +42,10 @@ public class FileManagerImp implements IFileManager {
         return instance;
     }
     
+    /**
+     * Creates the given file if it does not exists in <code>src/res</code>
+     * @param fileName file The file name, like <code>runners.csv</code>
+     */
     private void createFile(String fileName) {
         String path = "src" +File.separator +"res" +File.separator +fileName;
         File file = new File(path);

@@ -2,20 +2,24 @@ package gui;
 
 import gui.tablemodel.RunnerTableModel;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 import logic.obj.Runner;
 import logic.persistance.RepositoryImp;
 
+/**
+ * Window that shows the existing runners and allows the user to add, modify or
+ * eliminate them.
+ * @author Alejandro Martínez Remis
+ */
 public class RunnerManager extends javax.swing.JFrame {
     private static RunnerManager instance = null;
 
-    /**
-     * Creates new form RunnerManager
-     */
     private RunnerManager() {
         initComponents();
         myInitComponents();
@@ -224,42 +228,10 @@ public class RunnerManager extends javax.swing.JFrame {
         updateTable();
         loadHelpDocs();
     }
-    
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RunnerManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new RunnerManager().setVisible(true);
-//            }
-//        });
-//    }
 
+    /**
+     * Loads data into the JTable
+     */
     protected void updateTable(){
         Utils.lockCursor(this);
         RunnerTableModel runnerTableModel = new RunnerTableModel(RepositoryImp.getInstance().getNonRemovedRunners());
@@ -274,6 +246,9 @@ public class RunnerManager extends javax.swing.JFrame {
         Utils.unlockCursor(this);
     }
     
+    /**
+     * Loads JavaHelp documentation and associates components.
+     */
     private void loadHelpDocs(){
         try{
             File file = new File("help" +File.separator +"help_set.hs");
@@ -284,7 +259,7 @@ public class RunnerManager extends javax.swing.JFrame {
             
             hb.enableHelpKey(getRootPane(), "runner_manager", hs);
             hb.enableHelpOnButton(mntm_help, "runner_manager", hs);
-        }catch(Exception e){
+        }catch(IllegalArgumentException | MalformedURLException | HelpSetException e){
             e.printStackTrace();
         }
     }

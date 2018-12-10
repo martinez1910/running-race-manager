@@ -6,6 +6,10 @@ import javax.swing.table.AbstractTableModel;
 import logic.obj.Race;
 import logic.persistance.RepositoryImp;
 
+/**
+ * Table model for races.
+ * @author Alejandro Martínez Remis
+ */
 public class RaceTableModel extends AbstractTableModel {
     private final List<Race> races;
     private final String[] columnNames = {"Núm. Carrera", "Nombre", "Fecha", "Ubicación", "Núm. Corredores", "Máx. Núm. Corredores"};

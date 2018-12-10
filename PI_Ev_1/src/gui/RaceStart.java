@@ -11,14 +11,22 @@ import logic.obj.Race;
 import logic.obj.RunnerInRace;
 import logic.persistance.RepositoryImp;
 
+/**
+ * Window that manages the start of a race and the collection of the runners'
+ * time.
+ * @author Alejandro Martínez Remis
+ */
 public class RaceStart extends javax.swing.JDialog {
-    private RaceManager parent;
-    private Race race;
-    private List<RunnerInRace> runnersInRace;
+    private final RaceManager parent;
+    private final Race race;
+    private final List<RunnerInRace> runnersInRace;
     private int lastRunnerPosition = 0;
 
     /**
-     * Creates new form RaceStart
+     * Main constructor
+     * @param parent
+     * @param race Race to be initialized
+     * @param runnersInRace List that contains the runners of the race
      */
     public RaceStart(java.awt.Frame parent, Race race, List<RunnerInRace> runnersInRace) {
         super(parent, true);
@@ -169,52 +177,13 @@ public class RaceStart extends javax.swing.JDialog {
         });
     }
     
+    /**
+     * Closes the window
+     */
     private void exit(){
         if(Utils.messageConfirmationCancelRace(this) == JOptionPane.YES_OPTION)
             this.dispose();
     }
-    
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RaceStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RaceStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RaceStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RaceStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                RaceStart dialog = new RaceStart(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancel;

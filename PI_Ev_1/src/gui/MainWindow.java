@@ -3,18 +3,22 @@ package gui;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.JOptionPane;
 import logic.persistance.RepositoryImp;
 
+/**
+ * Main application's window behaving as a control panel from where the rest
+ * of the functionality is accessed.
+ * @author Alejandro Martínez Remis
+ */
 public class MainWindow extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MainWindow
-     */
+    
     public MainWindow() {
         initComponents();
         myInitComponents();
@@ -229,9 +233,6 @@ public class MainWindow extends javax.swing.JFrame {
         loadHelpDocs();
     }
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -286,6 +287,9 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Loads JavaHelp documentation and associates components.
+     */
     private void loadHelpDocs(){
         try{
             File file = new File("help" +File.separator +"help_set.hs");
@@ -296,7 +300,7 @@ public class MainWindow extends javax.swing.JFrame {
             
             hb.enableHelpKey(getRootPane(), "main", hs);
             hb.enableHelpOnButton(mntm_help, "main", hs);
-        }catch(Exception e){
+        }catch(IllegalArgumentException | MalformedURLException | HelpSetException e){
             e.printStackTrace();
         }
     }

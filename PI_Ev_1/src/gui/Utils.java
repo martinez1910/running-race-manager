@@ -6,6 +6,10 @@ import java.awt.Window;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+/**
+ * Util class for the GUI. It contains, mainly, JOptionPanes.
+ * @author Alejandro Martínez Remis
+ */
 public class Utils {
     
     /**

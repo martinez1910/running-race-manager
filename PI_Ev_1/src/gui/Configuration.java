@@ -2,6 +2,10 @@ package gui;
 
 import java.io.Serializable;
 
+/**
+ * Represents the configuration of the application
+ * @author Alejandro Martínez Remis
+ */
 public class Configuration implements Serializable{
     private String lookAndFeel;
     private int minutesAutoPersist;

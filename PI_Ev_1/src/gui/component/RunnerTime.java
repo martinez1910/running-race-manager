@@ -1,5 +1,9 @@
 package gui.component;
 
+/**
+ * Object containing the runner's time and its number in the race.
+ * @author Alejandro Martínez Remis
+ */
 public class RunnerTime {
     private int number;
     private long time;

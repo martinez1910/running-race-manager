@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 import logic.persistance.RepositoryImp;
 
+/**
+ * Represents a runner in a race.
+ * @author Alejandro Martínez Remis
+ */
 public class RunnerInRace implements Serializable{
     private int numRunner;
     private int numRace;

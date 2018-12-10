@@ -6,6 +6,13 @@ import logic.obj.Race;
 import logic.obj.Runner;
 import logic.obj.RunnerInRace;
 
+/**
+ * Interface to be implemented by the system in charge of serving as a repository;
+ * that is, a middle node between the file system and the core of the application.
+ * The methods consist of additions (new objects), updates, removals and retrievals
+ * (some of them rely onto each other due to being like a filtered query).
+ * @author Alejandro Martínez Remis
+ */
 public interface IRepository {
     public boolean addRunner(Runner runner);
     public boolean removeRunner(int pos);

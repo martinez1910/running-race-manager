@@ -3,6 +3,10 @@ package logic.obj;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Represents a race.
+ * @author Alejandro Martínez Remis
+ */
 public class Race implements Serializable{
     private int numRace;
     private String name;
@@ -25,7 +29,7 @@ public class Race implements Serializable{
             throw new IllegalArgumentException("Cannot construct the object with the given array (inconsistent number of elements found)");
         this.numRace = Integer.parseInt(race[0]);
         this.name = race[1];
-        this.date = new Date(Long.parseLong(race[2]));;
+        this.date = new Date(Long.parseLong(race[2]));
         this.location = race[3];
         this.maxRunners = Integer.parseInt(race[4]);
         this.finished = Boolean.parseBoolean(race[5]);

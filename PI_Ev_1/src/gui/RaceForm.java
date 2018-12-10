@@ -17,6 +17,10 @@ import org.netbeans.validation.api.builtin.stringvalidation.CapitalValidator;
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 import org.netbeans.validation.api.ui.ValidationGroup;
 
+/**
+ * Window to create or update a race.
+ * @author Alejandro Martínez Remis
+ */
 public class RaceForm extends javax.swing.JDialog {
     private final RaceManager parent;
     private final Race race;
@@ -348,48 +352,9 @@ public class RaceForm extends javax.swing.JDialog {
         addValidation();
     }
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RunnerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                RunnerForm dialog = new RunnerForm(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
-
+    /**
+     * Initializes the components to add a new race.
+     */
     private void initAddRace() {
         this.setTitle(org.openide.util.NbBundle.getMessage(RaceForm.class, "RaceManager.btn_add.text") +" Carrera");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/add_x12.png")).getImage());
@@ -402,6 +367,9 @@ public class RaceForm extends javax.swing.JDialog {
         spn_date.getEditor().setName("Máx. núm. corredores");
     }
 
+    /**
+     * Initializes the components to update an existing race.
+     */
     private void initUpdateRace() {
         this.setTitle(org.openide.util.NbBundle.getMessage(RaceForm.class, "RaceManager.btn_edit.text") +" Carrera");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/gui/img/edit_x12.png")).getImage());
@@ -415,6 +383,9 @@ public class RaceForm extends javax.swing.JDialog {
         spn_maxRunners.setValue(race.getMaxRunners());
     }
     
+    /**
+     * Adds validation to the user's input using an external library.
+     */
     private void addValidation() {
         ValidationGroup group = vpn_validation.getValidationGroup();
         //group.add(spn_maxRunners.getEditor(), new MaxRunnersLowerBoundValidator(this.race));
@@ -435,6 +406,9 @@ public class RaceForm extends javax.swing.JDialog {
         });
     }
      
+    /**
+     * Loads data into the JTable
+     */
     private void updateTable(){
         Utils.lockCursor(this);
         spn_maxRunners.setModel(new javax.swing.SpinnerNumberModel((int)spn_maxRunners.getValue(),
@@ -453,6 +427,10 @@ public class RaceForm extends javax.swing.JDialog {
         Utils.unlockCursor(this);
     }
     
+    /**
+     * Adds a new runner into the a given list
+     * @param runners 
+     */
     protected void addRunners(List<Runner> runners){
         for(Runner runner : runners)
             this.runnersInRace.add(new RunnerInRace(RepositoryImp.getInstance().getRunners().indexOf(runner),
@@ -463,6 +441,12 @@ public class RaceForm extends javax.swing.JDialog {
         updateTable();
     }
     
+    /**
+     * Returns the first available number starting from 1. For example, if the
+     * runners list contains 3 runners with numbers 1, 2 and 4 (because we 
+     * removed 3) the method will return 3.
+     * @return the first available number
+     */
     private int getFirstAvailableNumber(){
         List<Integer> notAvailableNumbers = new ArrayList<>();
         for(RunnerInRace runnerInRace : runnersInRace)
@@ -471,6 +455,7 @@ public class RaceForm extends javax.swing.JDialog {
             if(!notAvailableNumbers.contains(i))
                 return i;
     }
+    
     
     protected int getRunnersInRaceSize(){
         return this.runnersInRace.size();
