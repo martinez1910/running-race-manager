@@ -1,5 +1,6 @@
 package logic.persistance;
 
+import gui.Configuration;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,16 +17,19 @@ public class FileManagerImp implements IFileManager {
     private final static String FILENAME_RUNNERS = "runners.csv";
     private final static String FILENAME_RACES = "races.csv";
     private final static String FILENAME_RUNNERS_IN_RACES = "runners_in_races.csv";
+    private final static String FILENAME_CONFIGURATION = "config.csv";
     
     private static FileManagerImp instance = null;
     private File fileRunners = null;
     private File fileRaces = null;
     private File fileRunnersInRaces = null;
+    private File fileConfiguration = null;
 
     private FileManagerImp() {
         createFile(FILENAME_RUNNERS);
         createFile(FILENAME_RACES);
         createFile(FILENAME_RUNNERS_IN_RACES);
+        createFile(FILENAME_CONFIGURATION);
     }
 
     public static FileManagerImp getInstance(){
@@ -52,7 +56,10 @@ public class FileManagerImp implements IFileManager {
                 break;
             case FILENAME_RUNNERS_IN_RACES:
                 this.fileRunnersInRaces = file;
-                break;                
+                break;
+            case FILENAME_CONFIGURATION:
+                this.fileConfiguration = file;
+                break;
         }
     }   
     
@@ -135,6 +142,29 @@ public class FileManagerImp implements IFileManager {
                 bw.write(runnerInRace.toCSV());
                 bw.newLine();
             }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    @Override
+    public Configuration readConfiguration(){
+        try(BufferedReader br = new BufferedReader(new FileReader(fileConfiguration))){
+            String line = br.readLine();
+            if(line != null){
+                String[] configStrings = line.split(",");
+                return new Configuration(configStrings);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    @Override
+    public void persistConfiguration(Configuration configuration){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileConfiguration))){
+            bw.write(configuration.toCSV());
         }catch(IOException e){
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package logic.persistance;
 
+import gui.Configuration;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -10,19 +11,22 @@ import logic.obj.Runner;
 import logic.obj.RunnerInRace;
 
 public class RepositoryImp implements IRepository{
-    private final static long AUTOMATIC_PERSISTANCE_INTERVAL = 10 * 1000;
+    private final static long DEFAULT_AUTOMATIC_PERSISTANCE_INTERVAL = 30 * 60 * 1000;
     
     private static RepositoryImp instance = null;
     private final IFileManager fileManager;
     private final ArrayList<Runner> runners;
     private final ArrayList<Race> races;
     private final ArrayList<RunnerInRace> runnersInRaces;
+    private Configuration configuration;
     
     private RepositoryImp(){
-        this.fileManager = FileManagerImp.getInstance();
+        fileManager = FileManagerImp.getInstance();
         runners = new ArrayList<>(fileManager.readRunners());
         races = new ArrayList<>(fileManager.readRaces());
         runnersInRaces = new ArrayList<>(fileManager.readRunnersInRaces());
+        configuration = fileManager.readConfiguration();
+        
         automaticPersistance();
     }
     
@@ -278,12 +282,23 @@ public class RepositoryImp implements IRepository{
         return runnersNotInList;
     }
     
+    @Override
+    public void setConfiguration(Configuration configuration){
+        this.configuration = (Configuration) util.MyUtil.copy(configuration);
+    }
+    
+    @Override
+    public Configuration getConfiguration(){
+        return (Configuration) util.MyUtil.copy(this.configuration);
+    }
+    
 
     @Override
     public void persist() {
         fileManager.persistRunners(this.runners);
         fileManager.persistRaces(this.races);
         fileManager.persistRunnersInRaces(this.runnersInRaces);
+        fileManager.persistConfiguration(this.configuration);
     }
     
     private void automaticPersistance(){
@@ -295,6 +310,17 @@ public class RepositoryImp implements IRepository{
         };
         
         Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(timerTask, AUTOMATIC_PERSISTANCE_INTERVAL, AUTOMATIC_PERSISTANCE_INTERVAL);
+        if(configuration == null)
+            timer.scheduleAtFixedRate(timerTask, DEFAULT_AUTOMATIC_PERSISTANCE_INTERVAL, DEFAULT_AUTOMATIC_PERSISTANCE_INTERVAL);
+        else{
+            if(configuration.getMinutesAutoPersist() == 0){
+                timerTask = null;
+                return;
+            }
+            long interval = configuration.getMinutesAutoPersist()*60*1000;
+            timer.scheduleAtFixedRate(timerTask, interval, interval);
+        }
+            
+        
     }
 }

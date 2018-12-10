@@ -187,7 +187,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btn_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_settingsActionPerformed
-        // TODO add your handling code here:
+        Utils.allignAndShowWindow(Settings.getInstance(), this);
     }//GEN-LAST:event_btn_settingsActionPerformed
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
@@ -251,6 +251,8 @@ public class MainWindow extends javax.swing.JFrame {
         //</editor-fold>
         
         //</editor-fold>
+        
+        loadConfiguration();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -259,6 +261,22 @@ public class MainWindow extends javax.swing.JFrame {
                 new MainWindow().setVisible(true);
             }
         });
+    }
+    
+    private static void loadConfiguration(){
+        Configuration config = RepositoryImp.getInstance().getConfiguration();
+        if(config == null) return;
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if (config.getLookAndFeel().equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        }catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        }        
     }
     
     private void exit() {

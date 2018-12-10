@@ -1,5 +1,6 @@
 package logic.persistance;
 
+import gui.Configuration;
 import java.util.List;
 import logic.obj.Race;
 import logic.obj.Runner;
@@ -14,4 +15,7 @@ public interface IFileManager {
     
     public List<RunnerInRace> readRunnersInRaces();
     public void persistRunnersInRaces(List<RunnerInRace> runnersInRaces);
+    
+    public Configuration readConfiguration();
+    public void persistConfiguration(Configuration configuration);
 }

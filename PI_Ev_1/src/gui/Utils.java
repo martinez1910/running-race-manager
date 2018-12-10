@@ -69,6 +69,14 @@ public class Utils {
        JOptionPane.showMessageDialog(parent, "© 2018 Alejandro Martínez Remis, All Rights Reserved", "Información",JOptionPane.INFORMATION_MESSAGE);
     }
     
+    protected static void messageInformationDisableAutomaticPersistance(Component parent){
+       JOptionPane.showMessageDialog(parent, "¡Atención! Al seleccionar 0 minutos desactivará el guardado automático.", "Información",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    protected static void messageInformationReset(Component parent){
+       JOptionPane.showMessageDialog(parent, "Reinicie la aplicación para aplicar los cambios.", "Información",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     protected static void lockCursor(Component component){
         component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     }

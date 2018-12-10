@@ -1,5 +1,6 @@
 package logic.persistance;
 
+import gui.Configuration;
 import java.util.List;
 import logic.obj.Race;
 import logic.obj.Runner;
@@ -38,6 +39,9 @@ public interface IRepository {
     public List<RunnerInRace> getRunnersInRaces();
     public List<RunnerInRace> getRunnersInRace(Race race);
     public List<Runner> getRunnersNotInList(List<RunnerInRace> runnersInList);
+    
+    public void setConfiguration(Configuration configuration);
+    public Configuration getConfiguration();
     
     public void persist();
 }
