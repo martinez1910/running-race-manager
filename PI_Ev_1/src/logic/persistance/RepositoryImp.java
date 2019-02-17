@@ -2,6 +2,7 @@ package logic.persistance;
 
 import gui.Configuration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
@@ -103,7 +104,9 @@ public class RepositoryImp implements IRepository{
         ArrayList<Runner> tmp = new ArrayList<>();
         for(Runner runner : runners)
             tmp.add((Runner)util.MyUtil.copy(runner));
-        tmp.sort(new Comparator<Runner>(){
+
+//        tmp.sort(new Comparator<Runner>(){ //Since Java v1.8
+        Collections.sort(tmp, new Comparator<Runner>(){
             @Override
             public int compare(Runner r1, Runner r2){
                 return r1.getDateOfBirth().compareTo(r2.getDateOfBirth());
@@ -117,7 +120,9 @@ public class RepositoryImp implements IRepository{
         ArrayList<Runner> tmp = new ArrayList<>();
         for(Runner runner : runners)
             tmp.add((Runner)util.MyUtil.copy(runner));
-        tmp.sort(new Comparator<Runner>(){
+
+//        tmp.sort(new Comparator<Runner>(){ //Since Java v1.8
+        Collections.sort(tmp, new Comparator<Runner>(){
             @Override
             public int compare(Runner r1, Runner r2){
                 return r2.getDateOfBirth().compareTo(r1.getDateOfBirth());

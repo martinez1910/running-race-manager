@@ -81,6 +81,18 @@ public class Utils {
        JOptionPane.showMessageDialog(parent, "Reinicie la aplicación para aplicar los cambios.", "Información",JOptionPane.INFORMATION_MESSAGE);
     }
     
+    protected static void messageInformationSelectReport(Component parent){
+       JOptionPane.showMessageDialog(parent, "Seleccione un directorio válido al que exportar el informe.", "Información",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    protected static void messageInformationReport(Component parent){
+       JOptionPane.showMessageDialog(parent, "El informe ha sido guardado en el directorio seleccionado.", "Información",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    protected static void messageErrorReport(Component parent){
+        JOptionPane.showMessageDialog(parent, "Ha habido un error al intentar exportar el informe.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
     protected static void lockCursor(Component component){
         component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     }

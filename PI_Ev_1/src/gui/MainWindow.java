@@ -38,7 +38,7 @@ public class MainWindow extends javax.swing.JFrame {
         btn_race = new javax.swing.JButton();
         btn_race_finished = new javax.swing.JButton();
         btn_settings = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btn_report = new javax.swing.JButton();
         btn_exit = new javax.swing.JButton();
         mn_bar = new javax.swing.JMenuBar();
         mn_program = new javax.swing.JMenu();
@@ -104,13 +104,17 @@ public class MainWindow extends javax.swing.JFrame {
         });
         pn_main.add(btn_settings);
 
-        jButton5.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.jButton5.text")); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/report_x64.png"))); // NOI18N
+        btn_report.setMnemonic('i');
+        btn_report.setText(org.openide.util.NbBundle.getMessage(MainWindow.class, "MainWindow.btn_report.text")); // NOI18N
+        btn_report.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_report.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_report.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_reportActionPerformed(evt);
             }
         });
-        pn_main.add(jButton5);
+        pn_main.add(btn_report);
 
         btn_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/img/exit_x64.png"))); // NOI18N
         btn_exit.setMnemonic('s');
@@ -186,9 +190,9 @@ public class MainWindow extends javax.swing.JFrame {
         Utils.allignAndShowWindow(RunnerManager.getInstance(), this);        
     }//GEN-LAST:event_btn_runnerActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btn_reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportActionPerformed
+        Utils.allignAndShowWindow(ReportManager.getInstance(), this);
+    }//GEN-LAST:event_btn_reportActionPerformed
 
     private void btn_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_settingsActionPerformed
         Utils.allignAndShowWindow(Settings.getInstance(), this);
@@ -221,7 +225,6 @@ public class MainWindow extends javax.swing.JFrame {
         JOptionPane.setDefaultLocale(locale);
         
         this.setLocationRelativeTo(null); //center window
-        jButton5.setVisible(false);
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -309,9 +312,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_race;
     private javax.swing.JButton btn_race_finished;
+    private javax.swing.JButton btn_report;
     private javax.swing.JButton btn_runner;
     private javax.swing.JButton btn_settings;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuBar mn_bar;
     private javax.swing.JMenu mn_help;
