@@ -173,7 +173,13 @@ public class RepositoryImp implements IRepository{
 
     @Override
     public Race getRace(int pos) {
-        return (Race) util.MyUtil.copy(races.get(pos));
+        Race race = null;
+        try{
+            race =(Race) util.MyUtil.copy(races.get(pos));
+        }catch(IndexOutOfBoundsException e){
+            return null;
+        }
+        return race;
     }
 
     @Override

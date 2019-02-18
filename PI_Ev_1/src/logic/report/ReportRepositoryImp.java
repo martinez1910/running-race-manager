@@ -2,10 +2,13 @@ package logic.report;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import logic.obj.Race;
+import logic.obj.Runner;
+import logic.obj.RunnerInRace;
 import logic.persistance.IRepository;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -36,8 +39,19 @@ public class ReportRepositoryImp implements IReportRepository{
     }
 
     @Override
-    public boolean getReport2(String directory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean getReport2(Race race, String directory) {
+        List<Object> reports = new ArrayList<>();
+        for(RunnerInRace runnerInRace : repository.getRunnersInRace(race))
+            reports.add(runnerInRace);
+        
+        Map map = new HashMap();
+        map.put("RACE_NUMBER", race.getNumRace());
+        map.put("RACE_NAME", race.getName());
+        map.put("RACE_DATE", race.getDate());
+        map.put("RACE_LOCATION", race.getLocation());
+        map.put("RACE_MAX_RUNNERS", race.getMaxRunners());
+        map.put("RACE_FINISHED", race.isFinished());
+        return fillAndExportToPdf(reports, map, "report2", directory);
     }
 
     @Override
@@ -54,7 +68,7 @@ public class ReportRepositoryImp implements IReportRepository{
     private boolean fillAndExportToPdf(List<Object> data, Map param, String reportName, String pdfPath){
         try{
             String jasperPath = "src" +File.separator +"res" +File.separator +"report" +File.separator +reportName +".jasper";
-            pdfPath += File.separator +"report1_" +System.currentTimeMillis() +".pdf";
+            pdfPath += File.separator +reportName +"_" +System.currentTimeMillis() +".pdf";
             
             JRDataSource dataSource = new JRBeanCollectionDataSource(data);
             JasperPrint print = JasperFillManager.fillReport(jasperPath, param, dataSource);

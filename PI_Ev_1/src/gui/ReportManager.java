@@ -8,6 +8,8 @@ package gui;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import logic.obj.Race;
 import logic.persistance.RepositoryImp;
 import logic.report.IReportRepository;
 import logic.report.ReportRepositoryImp;
@@ -175,7 +177,13 @@ public class ReportManager extends javax.swing.JFrame {
                 success = reportRepository.getReport1(path);
                 break;
             case 1:
-                success = reportRepository.getReport2(path);
+                Race race = askRace();
+                if(race == null){
+                    Utils.messageErrorReportNoRace(this);
+                    return;
+                } 
+                    
+                success = reportRepository.getReport2(race, path);
                 break;
             case 2:
                 success = reportRepository.getReport3(path);
@@ -212,6 +220,18 @@ public class ReportManager extends javax.swing.JFrame {
         lbl_report.setLabelFor(cb_report);
         lbl_directory.setDisplayedMnemonic('c');
         lbl_directory.setLabelFor(txt_directory);
+    }
+    
+    private Race askRace(){
+        int numRace = -1;
+        String str = JOptionPane.showInputDialog(this, "Inserte el número de la carrera:", "Informe", JOptionPane.PLAIN_MESSAGE);
+        try{
+            numRace = Integer.parseInt(str);
+        }catch(NumberFormatException e){
+            return null;
+        }
+        
+        return RepositoryImp.getInstance().getRace(numRace);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

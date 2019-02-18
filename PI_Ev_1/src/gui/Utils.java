@@ -93,6 +93,10 @@ public class Utils {
         JOptionPane.showMessageDialog(parent, "Ha habido un error al intentar exportar el informe.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
+    protected static void messageErrorReportNoRace(Component parent){
+        JOptionPane.showMessageDialog(parent, "La carrera que ha introducido no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
     protected static void lockCursor(Component component){
         component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     }
