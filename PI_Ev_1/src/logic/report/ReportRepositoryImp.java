@@ -2,7 +2,6 @@ package logic.report;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,8 +68,21 @@ public class ReportRepositoryImp implements IReportRepository{
     }
 
     @Override
-    public boolean getReport4(String directory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean getReport4(Runner runner, String directory) {
+        List<Object> reports = new ArrayList<>();
+        for(Race race : repository.getUnfinishedRaces())
+            for(RunnerInRace runnerInRace : repository.getRunnersInRace(race))
+                if(runnerInRace.getRunner().equals(runner))
+                    reports.add(race);
+        
+        Map map = new HashMap();
+        map.put("RUNNER_NAME", runner.getName());
+        map.put("RUNNER_ID", runner.getId());
+        map.put("RUNNER_DATE", runner.getDateOfBirth());
+        map.put("RUNNER_ADDRESS", runner.getAddress());
+        map.put("RUNNER_PHONE", runner.getPhoneNumber());
+        map.put("RUNNER_REMOVED", runner.isRemoved());
+        return fillAndExportToPdf(reports, map, "report4", directory);
     }
     
     

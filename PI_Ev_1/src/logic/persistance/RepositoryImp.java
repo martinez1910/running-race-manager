@@ -74,7 +74,13 @@ public class RepositoryImp implements IRepository{
 
     @Override
     public Runner getRunner(int pos) {
-        return (Runner)util.MyUtil.copy(runners.get(pos));
+        Runner runner = null;
+        try{
+            runner = (Runner)util.MyUtil.copy(runners.get(pos));
+        }catch(IndexOutOfBoundsException e){
+            return null;
+        }
+        return runner;
     }
 
     @Override

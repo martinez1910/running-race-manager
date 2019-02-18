@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import logic.obj.Race;
+import logic.obj.Runner;
 import logic.persistance.RepositoryImp;
 import logic.report.IReportRepository;
 import logic.report.ReportRepositoryImp;
@@ -171,13 +172,15 @@ public class ReportManager extends javax.swing.JFrame {
             Utils.messageErrorReport(this);
             return;
         }
-        
+        Race race;
+        Runner runner;
         switch(cb_report.getSelectedIndex()){
+            
             case 0:
                 success = reportRepository.getReport1(path);
                 break;
             case 1:
-                Race race = askRace();
+                 race = askRace();
                 if(race == null){
                     Utils.messageErrorReportNoRace(this);
                     return;
@@ -186,16 +189,21 @@ public class ReportManager extends javax.swing.JFrame {
                 success = reportRepository.getReport2(race, path);
                 break;
             case 2:
-                Race race2 = askFinishedRace();
-                if(race2 == null){
+                race = askFinishedRace();
+                if(race == null){
                     Utils.messageErrorReportNoRace(this);
                     return;
                 } 
                 
-                success = reportRepository.getReport3(race2, path);
+                success = reportRepository.getReport3(race, path);
                 break;
             case 3:
-                success = reportRepository.getReport4(path);
+                runner = askRunner();
+                if(runner == null){
+                    Utils.messageErrorReportNoRunner(this);
+                    return;
+                } 
+                success = reportRepository.getReport4(runner, path);
                 break;
             default:
                 MyUtil.unreachableCode("Mustn't reach default case");
@@ -250,6 +258,18 @@ public class ReportManager extends javax.swing.JFrame {
         }
         
         return RepositoryImp.getInstance().getFinishedRace(numRace);
+    }
+    
+    private Runner askRunner(){
+        int numRunner = -1;
+        String str = JOptionPane.showInputDialog(this, "Inserte el número del corredor:", "Informe", JOptionPane.PLAIN_MESSAGE);
+        try{
+            numRunner = Integer.parseInt(str);
+        }catch(NumberFormatException e){
+            return null;
+        }
+        
+        return RepositoryImp.getInstance().getRunner(numRunner);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -97,6 +97,10 @@ public class Utils {
         JOptionPane.showMessageDialog(parent, "La carrera que ha introducido no existe.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
+    protected static void messageErrorReportNoRunner(Component parent){
+        JOptionPane.showMessageDialog(parent, "El corredor que ha introducido no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+            
     protected static void lockCursor(Component component){
         component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     }
