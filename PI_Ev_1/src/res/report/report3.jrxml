@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d63f6cb4-0663-4e05-8047-7e3ee46b3526">
+	<property name="ireport.zoom" value="1.2396694214876032"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="RACE_NAME" class="java.lang.String"/>
+	<parameter name="RACE_NUMBER" class="java.lang.Integer"/>
+	<parameter name="RACE_DATE" class="java.util.Date"/>
+	<parameter name="RACE_LOCATION" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[number]]></fieldDescription>
+	</field>
+	<field name="position" class="java.lang.Integer">
+		<fieldDescription><![CDATA[position]]></fieldDescription>
+	</field>
+	<field name="runner" class="logic.obj.Runner">
+		<fieldDescription><![CDATA[runner]]></fieldDescription>
+	</field>
+	<field name="time" class="java.lang.Long">
+		<fieldDescription><![CDATA[time]]></fieldDescription>
+	</field>
+	<sortField name="position"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="121" y="0" width="310" height="26" uuid="d90046d7-3086-47c6-b918-76807ddc30be"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Informe 3 - Clasificación de carrera]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="32" width="100" height="20" uuid="73f830da-a274-4303-b5cc-2c1f01b8bdd0"/>
+				<textFieldExpression><![CDATA["Nombre: " +$P{RACE_NAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="224" y="32" width="102" height="20" uuid="66031a77-7a56-4aff-a5cd-8e2f3e077c7f"/>
+				<textFieldExpression><![CDATA[$P{RACE_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="32" width="59" height="20" uuid="f3b48746-123b-4b7f-8c9f-ac45cd0275fa"/>
+				<textFieldExpression><![CDATA["Nº: "+$P{RACE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="187" y="32" width="37" height="20" uuid="7397d827-681c-45aa-ab0e-5398cfbb591a"/>
+				<textFieldExpression><![CDATA["Fecha:"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="226" y="59" width="111" height="20" uuid="ecc6f062-fae1-4a86-bd8a-63a5c3116e97"/>
+				<textFieldExpression><![CDATA["Nº corredores: " +$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="32" width="205" height="20" uuid="9ba82489-f1d2-4807-a8ab-6d011c7fde9f"/>
+				<textFieldExpression><![CDATA["Ubicación: " +$P{RACE_LOCATION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="69" height="20" uuid="ea0b3279-6f8c-4796-928a-f6913bc1d5a5"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Posición]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="2" width="100" height="20" uuid="831c5676-0145-4a82-a5fe-79525139853a"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Tiempo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="2" width="100" height="20" uuid="763bf4d2-9571-40ed-8958-2c789934ad15"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Dorsal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="2" width="187" height="20" uuid="33909b13-04c6-47ac-9719-8f3100db752f"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="237" y="0" width="100" height="20" uuid="07b5ed15-18dd-4b70-94aa-a9eb654ae7d0"/>
+				<textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="187" height="20" uuid="2bde42f1-89ec-48b1-98ed-492ecfbf2dd2"/>
+				<textFieldExpression><![CDATA[$F{runner}.getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="69" height="20" uuid="b8283c05-fb37-4e05-84f4-f11411a1c04e"/>
+				<textFieldExpression><![CDATA[$F{position}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="0" width="14" height="20" uuid="cf195e66-7b7e-4f34-98f2-018b6fc00723"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[($F{time} / (1000 * 60 * 60)) % 24 +":"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="14" height="20" uuid="5b47983a-0642-4206-96b0-ec12a8679df3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[($F{time} / (1000 * 60)) % 60 +":"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="0" width="14" height="20" uuid="ef8896ec-a69a-4bbe-a388-f3ef7efe5038"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[($F{time} / 1000) % 60 +"."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="0" width="14" height="20" uuid="6c70c52f-fc53-4ced-a6df-c701350ea6ba"/>
+				<textFieldExpression><![CDATA[$F{time} % 1000]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="207" y="30" width="80" height="20" uuid="a5c8a508-f3ea-46e6-9478-d99a03a96edd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="287" y="30" width="40" height="20" uuid="cf91b421-f218-4bba-a35e-3ea95e9f113a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

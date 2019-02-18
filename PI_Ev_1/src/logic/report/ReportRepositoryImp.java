@@ -55,8 +55,17 @@ public class ReportRepositoryImp implements IReportRepository{
     }
 
     @Override
-    public boolean getReport3(String directory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean getReport3(Race race, String directory) {
+        List<Object> reports = new ArrayList<>();
+        for(RunnerInRace runnerInRace : repository.getRunnersInRace(race))
+            reports.add(runnerInRace);
+        
+        Map map = new HashMap();
+        map.put("RACE_NUMBER", race.getNumRace());
+        map.put("RACE_NAME", race.getName());
+        map.put("RACE_DATE", race.getDate());
+        map.put("RACE_LOCATION", race.getLocation());
+        return fillAndExportToPdf(reports, map, "report3", directory);
     }
 
     @Override

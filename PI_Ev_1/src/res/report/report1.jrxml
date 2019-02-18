@@ -15,6 +15,7 @@
 	<field name="raceRunners" class="java.lang.Integer">
 		<fieldDescription><![CDATA[raceRunners]]></fieldDescription>
 	</field>
+	<sortField name="raceName"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

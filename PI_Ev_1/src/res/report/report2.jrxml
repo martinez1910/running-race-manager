@@ -33,6 +33,7 @@
 	<field name="time" class="java.lang.Long">
 		<fieldDescription><![CDATA[time]]></fieldDescription>
 	</field>
+	<sortField name="number"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -69,7 +70,7 @@
 				<textFieldExpression><![CDATA["Ubicación: " +$P{RACE_LOCATION}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="134" y="59" width="100" height="20" uuid="d5868ff0-cc1d-44ad-9403-8a8fe561f04a"/>
+				<reportElement x="134" y="59" width="124" height="20" uuid="d5868ff0-cc1d-44ad-9403-8a8fe561f04a"/>
 				<textFieldExpression><![CDATA["Nº max. corredores: " +$P{RACE_MAX_RUNNERS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
@@ -84,23 +85,31 @@
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="31" y="2" width="38" height="20" uuid="cc9760e8-1567-44ba-a836-258e2508dc96"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="31" y="2" width="53" height="20" uuid="cc9760e8-1567-44ba-a836-258e2508dc96"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
 				<text><![CDATA[Dorsal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="97" y="2" width="122" height="20" uuid="7a29f714-0347-46f4-9053-bb9dd748689b"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="97" y="2" width="137" height="20" uuid="7a29f714-0347-46f4-9053-bb9dd748689b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="248" y="2" width="63" height="20" uuid="c671ba0a-1a4a-41fa-bab4-097ac820388e"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="248" y="2" width="78" height="20" uuid="c671ba0a-1a4a-41fa-bab4-097ac820388e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
 				<text><![CDATA[DNI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="336" y="2" width="100" height="20" uuid="36c8c83c-e5ff-48a6-a3d1-423bc9f89967"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="336" y="2" width="115" height="20" uuid="36c8c83c-e5ff-48a6-a3d1-423bc9f89967"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
 				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 		</band>
@@ -125,7 +134,17 @@
 			</textField>
 		</band>
 	</detail>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="219" y="30" width="80" height="20" uuid="b1922c37-71fb-4d95-b4c6-0158a24726d3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="299" y="30" width="40" height="20" uuid="7a1eb98f-8b01-4838-ae19-1d38bd57ce65"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
 </jasperReport>

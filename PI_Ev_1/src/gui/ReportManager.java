@@ -186,7 +186,13 @@ public class ReportManager extends javax.swing.JFrame {
                 success = reportRepository.getReport2(race, path);
                 break;
             case 2:
-                success = reportRepository.getReport3(path);
+                Race race2 = askFinishedRace();
+                if(race2 == null){
+                    Utils.messageErrorReportNoRace(this);
+                    return;
+                } 
+                
+                success = reportRepository.getReport3(race2, path);
                 break;
             case 3:
                 success = reportRepository.getReport4(path);
@@ -232,6 +238,18 @@ public class ReportManager extends javax.swing.JFrame {
         }
         
         return RepositoryImp.getInstance().getRace(numRace);
+    }
+    
+    private Race askFinishedRace(){
+        int numRace = -1;
+        String str = JOptionPane.showInputDialog(this, "Inserte el número de la carrera finalizada:", "Informe", JOptionPane.PLAIN_MESSAGE);
+        try{
+            numRace = Integer.parseInt(str);
+        }catch(NumberFormatException e){
+            return null;
+        }
+        
+        return RepositoryImp.getInstance().getFinishedRace(numRace);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
