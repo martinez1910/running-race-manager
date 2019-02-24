@@ -76,8 +76,8 @@
       <DependentUpon>SupplyManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="logic\IRepository.cs" />
-    <Compile Include="logic\obj\Race.cs" />
-    <Compile Include="logic\obj\Supply.cs" />
+    <Compile Include="logic\objects\Race.cs" />
+    <Compile Include="logic\objects\Supply.cs" />
     <Page Include="gui\ItemForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,7 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="logic\obj\Item.cs" />
+    <Compile Include="logic\objects\Item.cs" />
     <Compile Include="logic\RepositoryImpl.cs" />
     <Compile Include="gui\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -122,7 +122,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="logic\obj\Person.cs" />
+    <Compile Include="logic\objects\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

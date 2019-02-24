@@ -47,10 +47,6 @@ namespace PI_Ev_2.gui
             }
 
             lvItems.ItemsSource = Supply.Items;
-
-            //var lvi = new ListViewItem();
-            //lvi.Content = item.ToString();
-            //lvItems.Items.Add(lvi);
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -92,6 +88,18 @@ namespace PI_Ev_2.gui
         {
             var window = new SupplyFormItemForm(Supply);
             window.ShowDialog();
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var selection = (Item)lvItems.SelectedItem;
+            if (selection == null)
+            {
+                MessageBox.Show("Seleccione un material", "Error");
+                return;
+            }
+
+            Supply.Items.Remove(selection);
         }
     }
 }
