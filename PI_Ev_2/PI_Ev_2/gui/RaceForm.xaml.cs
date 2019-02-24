@@ -53,8 +53,7 @@ namespace PI_Ev_2.gui
             if (!Modifying)
                 AddRace();
             else
-                EditRace();
-            
+                EditRace();            
         }
 
         private void AddRace()

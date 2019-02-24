@@ -17,7 +17,7 @@ namespace PI_Ev_2.logic
         ObservableCollection<Supply> GetSupplies();
         bool AddSupply(Supply supply);
         bool RemoveSupply(Supply supply);
-        bool UpdateSupply(Supply supply, Supply updatedSupply);
+        bool UpdateSupply(Supply updatedSupply, int pos);
 
         ObservableCollection<Race> GetRaces();
         bool AddRace(Race race);

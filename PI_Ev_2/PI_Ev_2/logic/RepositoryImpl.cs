@@ -71,11 +71,11 @@ namespace PI_Ev_2.logic
         {
             return Supplies.Remove(supply);
         }
-        public bool UpdateSupply(Supply supply, Supply updatedSupply)
+        public bool UpdateSupply(Supply updatedSupply, int pos)
         {
             if (Supplies.Contains(updatedSupply))
                 return false;
-            Supplies[Supplies.IndexOf(supply)] = updatedSupply;
+            Supplies[pos] = updatedSupply;
             return true;
         }
 
