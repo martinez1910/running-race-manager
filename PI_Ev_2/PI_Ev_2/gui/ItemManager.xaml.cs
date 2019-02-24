@@ -61,7 +61,8 @@ namespace PI_Ev_2.gui
                 return;
             }
             var item = (Item)DataGrid.SelectedCells[0].Item;
-            RepositoryImpl.GetInstance().RemoveItem(item);
+            if (!RepositoryImpl.GetInstance().RemoveItem(item))
+                MessageBox.Show("El material está asociado a un avituallamiento", "Error");
         }
     }
 }
