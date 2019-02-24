@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PI_Ev_2
 {
-    public class Race : INotifyPropertyChanged, ICloneable
+    public class Race : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
         private string _name;
         public string Name
@@ -47,6 +47,24 @@ namespace PI_Ev_2
         public object Clone()
         {
             return this.MemberwiseClone();
+        }
+
+        public string Error
+        {
+            get { return ""; }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                String result = "";
+                if(columnName.Equals("Name"))
+                    if(string.IsNullOrEmpty(_name))
+                        result = "Debe introducir un nombre";
+
+                return result;
+            }
         }
     }
 }

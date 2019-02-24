@@ -17,19 +17,20 @@ namespace PI_Ev_2.gui
 {
    public partial class ItemForm : Window
     {
-       private Item Item { get; set; }
+       private MyItem Item { get; set; }
        private bool Modifying;
        private int Pos;
+       private int Errors = 0;
         
        public ItemForm()
        {
            InitializeComponent();
            MyInitializeComponent();
-           Item = new Item();
+           Item = new MyItem();
            this.DataContext = Item;
        }
 
-       public ItemForm(Item item, int pos)
+       public ItemForm(MyItem item, int pos)
        {
            InitializeComponent();
            MyInitializeComponent();
@@ -76,7 +77,7 @@ namespace PI_Ev_2.gui
         private void AddItem()
         {
             if (!RepositoryImpl.GetInstance().AddItem(Item))
-                MessageBox.Show("La carrera ya existe", "Error");
+                MessageBox.Show("El material ya existe", "Error");
             else
                 this.Close();
         }
@@ -84,9 +85,22 @@ namespace PI_Ev_2.gui
         private void EditItem()
         {
             if (!RepositoryImpl.GetInstance().UpdateItem(Item, Pos))
-                MessageBox.Show("La carrera ya existe", "Error");
+                MessageBox.Show("El material ya existe", "Error");
             else
                 this.Close();
+        }
+
+        private void Validation_Error(object sender, ValidationErrorEventArgs args)
+        {
+            if (args.Action == ValidationErrorEventAction.Added)
+                Errors++;
+            else
+                Errors--;
+
+            if (Errors == 0)
+                btnAccept.IsEnabled = true;
+            else
+                btnAccept.IsEnabled = false;
         }
     }
 }

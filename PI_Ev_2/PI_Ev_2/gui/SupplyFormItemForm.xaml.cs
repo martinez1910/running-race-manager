@@ -28,12 +28,13 @@ namespace PI_Ev_2.gui
 
         private void MyInitializeComponent()
         {
-            foreach(Item item in RepositoryImpl.GetInstance().GetItems())
+            foreach(MyItem item in RepositoryImpl.GetInstance().GetItems())
             {
                 var cbi = new ComboBoxItem();
                 cbi.Content = item;
                 cbItems.Items.Add(cbi);
-            }      
+            }
+            cbItems.SelectedIndex = 0;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -44,8 +45,11 @@ namespace PI_Ev_2.gui
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             var cbi = (ComboBoxItem)cbItems.SelectedItem;
-            _supply.Items.Add((Item)cbi.Content);
-            this.Close();
+            if (cbi != null)
+            {
+                _supply.Items.Add((MyItem)cbi.Content);
+                this.Close();
+            }
         }
     }
 }

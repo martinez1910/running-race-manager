@@ -8,13 +8,13 @@
         <Button x:Name="btnAccept" Content="Aceptar" HorizontalAlignment="Left" Margin="129,241,0,0" VerticalAlignment="Top" Width="75" Click="BtnAccept_Click"/>
         <Button x:Name="btnCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="209,241,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
         <Label x:Name="lblRace" Content="Carrera:" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbRace" Text="{Binding Path=Race.Name}" HorizontalAlignment="Left" Margin="107,10,0,0" VerticalAlignment="Top" Width="177"/>
+        <ComboBox x:Name="cbRace" Text="{Binding Path=Race.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Validation.Error="Validation_Error" HorizontalAlignment="Left" Margin="107,10,0,0" VerticalAlignment="Top" Width="177"/>
         <Label x:Name="lblPK" Content="PK:" HorizontalAlignment="Left" Margin="76,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.846,0.692"/>
-        <TextBox x:Name="txtPK" Text="{Binding Path=KilometricPoint}" HorizontalAlignment="Left" Height="23" Margin="107,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
+        <TextBox x:Name="txtPK" Text="{Binding Path=KilometricPoint, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Validation.Error="Validation_Error" HorizontalAlignment="Left" Height="23" Margin="107,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
         <Label x:Name="lblName" Content="Nom. Respons.:" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtName" Text="{Binding Path=Person.Name}" HorizontalAlignment="Left" Height="23" Margin="107,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtName" Text="{Binding Path=Person.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Validation.Error="Validation_Error" HorizontalAlignment="Left" Height="23" Margin="107,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="lblPhone" Content="Tfn. Respons.:" HorizontalAlignment="Left" Margin="20,94,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPhone" Text="{Binding Path=Person.Phone}" HorizontalAlignment="Left" Height="23" Margin="107,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtPhone" Text="{Binding Path=Person.Phone, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Validation.Error="Validation_Error" HorizontalAlignment="Left" Height="23" Margin="107,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ListView x:Name="lvItems" ItemsSource="{Binding Path=Items}" HorizontalAlignment="Left" Height="91" Margin="10,125,0,0" VerticalAlignment="Top" Width="221">
             <ListView.View>
                 <GridView>

@@ -12,13 +12,13 @@ namespace PI_Ev_2.logic
         private static RepositoryImpl Instance = null;
         private ObservableCollection<Race> Races;
         private ObservableCollection<Supply> Supplies;
-        private ObservableCollection<Item> Items;
+        private ObservableCollection<MyItem> Items;
 
         private RepositoryImpl()
         {
             Races = new ObservableCollection<Race>();
             Supplies = new ObservableCollection<Supply>();
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<MyItem>();
         }
 
         public static RepositoryImpl GetInstance()
@@ -29,25 +29,25 @@ namespace PI_Ev_2.logic
         }
 
 
-        public ObservableCollection<Item> GetItems()
+        public ObservableCollection<MyItem> GetItems()
         {
             return Items;
         }
-        public bool AddItem(Item item)
+        public bool AddItem(MyItem item)
         {
             if(Items.Contains(item))
                 return false;
             Items.Add(item);
             return true;
         }
-        public bool RemoveItem(Item item)
+        public bool RemoveItem(MyItem item)
         {
             foreach (Supply supply in Supplies)
                 if (supply.Items.Contains(item))
                     return false;
             return Items.Remove(item);
         }
-        public bool UpdateItem(Item updatedItem, int pos)
+        public bool UpdateItem(MyItem updatedItem, int pos)
         {
             if (Items.Contains(updatedItem))
                 return false;

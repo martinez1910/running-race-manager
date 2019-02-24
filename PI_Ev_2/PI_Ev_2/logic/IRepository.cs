@@ -9,10 +9,10 @@ namespace PI_Ev_2.logic
 {
     interface IRepository
     {
-        ObservableCollection<Item> GetItems();
-        bool AddItem(Item item);
-        bool RemoveItem(Item item);
-        bool UpdateItem(Item updatedItem, int pos);
+        ObservableCollection<MyItem> GetItems();
+        bool AddItem(MyItem item);
+        bool RemoveItem(MyItem item);
+        bool UpdateItem(MyItem updatedItem, int pos);
 
         ObservableCollection<Supply> GetSupplies();
         bool AddSupply(Supply supply);

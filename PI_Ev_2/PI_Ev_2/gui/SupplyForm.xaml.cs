@@ -20,6 +20,7 @@ namespace PI_Ev_2.gui
         private Supply Supply { get; set; }
         private bool Modifying;
         private int Pos;
+        private int Errors;
 
         public SupplyForm()
         {
@@ -71,7 +72,7 @@ namespace PI_Ev_2.gui
         private void AddSupply()
         {
             if (!RepositoryImpl.GetInstance().AddSupply(Supply))
-                MessageBox.Show("El material ya existe", "Error");
+                MessageBox.Show("El avituallamiento ya existe", "Error");
             else
                 this.Close();
         }
@@ -79,7 +80,7 @@ namespace PI_Ev_2.gui
         private void EditSupply()
         {
             if (!RepositoryImpl.GetInstance().UpdateSupply(Supply, Pos))
-                MessageBox.Show("El material ya existe", "Error");
+                MessageBox.Show("El avituallamiento ya existe", "Error");
             else
                 this.Close();
         }
@@ -92,14 +93,27 @@ namespace PI_Ev_2.gui
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            var selection = (Item)lvItems.SelectedItem;
+            var selection = (MyItem)lvItems.SelectedItem;
             if (selection == null)
             {
-                MessageBox.Show("Seleccione un material", "Error");
+                MessageBox.Show("Seleccione un avituallamiento", "Error");
                 return;
             }
 
             Supply.Items.Remove(selection);
+        }
+        
+        private void Validation_Error(object sender, ValidationErrorEventArgs args)
+        {
+            if (args.Action == ValidationErrorEventAction.Added)
+                Errors++;
+            else
+                Errors--;
+
+            if (Errors == 0)
+                btnAccept.IsEnabled = true;
+            else
+                btnAccept.IsEnabled = false;
         }
     }
 }

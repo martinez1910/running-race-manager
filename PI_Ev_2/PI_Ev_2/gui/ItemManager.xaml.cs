@@ -18,8 +18,8 @@ namespace PI_Ev_2.gui
 {
     public partial class ItemManager : Window
     {
-        private ObservableCollection<Item> _items;
-        public ObservableCollection<Item> Items { get { return _items; } set { _items = value; } }
+        private ObservableCollection<MyItem> _items;
+        public ObservableCollection<MyItem> Items { get { return _items; } set { _items = value; } }
 
         public ItemManager()
         {
@@ -48,8 +48,8 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione un material", "Error");
                 return;
             }
-            Item item = (Item)DataGrid.SelectedItem;
-            ItemForm window = new ItemForm((Item)item.Clone(), pos);
+            MyItem item = (MyItem)DataGrid.SelectedItem;
+            ItemForm window = new ItemForm((MyItem)item.Clone(), pos);
             window.ShowDialog();
         }
 
@@ -57,10 +57,10 @@ namespace PI_Ev_2.gui
         {
             if (DataGrid.SelectedCells.Count == 0)
             {
-                MessageBox.Show("Seleccione una carrera", "Error");
+                MessageBox.Show("Seleccione un material", "Error");
                 return;
             }
-            var item = (Item)DataGrid.SelectedCells[0].Item;
+            var item = (MyItem)DataGrid.SelectedCells[0].Item;
             if (!RepositoryImpl.GetInstance().RemoveItem(item))
                 MessageBox.Show("El material está asociado a un avituallamiento", "Error");
         }
