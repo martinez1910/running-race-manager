@@ -94,7 +94,7 @@ namespace PI_Ev_2.logic
         public bool RemoveRace(Race race)
         {
             bool result = true;
-            foreach(Supply supply in Supplies)
+            foreach(Supply supply in Supplies.ToList())
                 if(supply.Race.Equals(race))
                     result = result && Supplies.Remove(supply);
 
