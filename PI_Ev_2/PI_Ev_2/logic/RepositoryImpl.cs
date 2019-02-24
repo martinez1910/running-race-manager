@@ -47,11 +47,11 @@ namespace PI_Ev_2.logic
                     return false;
             return Items.Remove(item);
         }
-        public bool UpdateItem(Item item, Item updatedItem)
+        public bool UpdateItem(Item updatedItem, int pos)
         {
             if (Items.Contains(updatedItem))
                 return false;
-            Items[Items.IndexOf(item)] = updatedItem;
+            Items[pos] = updatedItem;
             return true;
         }
 

@@ -16,17 +16,18 @@ using System.Windows.Shapes;
 
 namespace PI_Ev_2.gui
 {
-    public partial class RaceManager : Window
+    public partial class ItemManager : Window
     {
-        private ObservableCollection<Race> _races;
-        public ObservableCollection<Race> Races{get{return _races;}}
+        private ObservableCollection<Item> _items;
+        public ObservableCollection<Item> Items { get { return _items; } set { _items = value; } }
 
-        public RaceManager()
+        public ItemManager()
         {
             InitializeComponent();
-            _races = RepositoryImpl.GetInstance().GetRaces();
-            DataGrid.ItemsSource = Races;
+            _items = RepositoryImpl.GetInstance().GetItems();
+            DataGrid.ItemsSource = _items;
         }
+
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -35,7 +36,7 @@ namespace PI_Ev_2.gui
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            RaceForm window = new RaceForm();
+            ItemForm window = new ItemForm();
             window.ShowDialog();
         }
 
@@ -44,11 +45,11 @@ namespace PI_Ev_2.gui
             int pos = DataGrid.SelectedIndex;
             if (pos == -1)
             {
-                MessageBox.Show("Seleccione una carrera", "Error");
+                MessageBox.Show("Seleccione un material", "Error");
                 return;
             }
-            Race race = (Race) DataGrid.SelectedItem;
-            RaceForm window = new RaceForm((Race)race.Clone(), pos);
+            Item item = (Item)DataGrid.SelectedItem;
+            ItemForm window = new ItemForm((Item)item.Clone(), pos);
             window.ShowDialog();
         }
 
@@ -59,8 +60,8 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione una carrera", "Error");
                 return;
             }
-            var race = (Race) DataGrid.SelectedCells[0].Item;
-            RepositoryImpl.GetInstance().RemoveRace(race);
+            var item = (Item)DataGrid.SelectedCells[0].Item;
+            RepositoryImpl.GetInstance().RemoveItem(item);
         }
     }
 }

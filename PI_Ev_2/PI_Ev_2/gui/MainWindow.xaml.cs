@@ -34,10 +34,18 @@ namespace PI_Ev_2
             SupplyManager window = new SupplyManager();
             window.ShowDialog();
         }
+
+        private void BtnItemsManager_Click(object sender, RoutedEventArgs e)
+        {
+            ItemManager window = new ItemManager();
+            window.ShowDialog();
+        }
         
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        
     }
 }

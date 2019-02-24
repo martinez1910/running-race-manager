@@ -12,7 +12,7 @@ namespace PI_Ev_2.logic
         ObservableCollection<Item> GetItems();
         bool AddItem(Item item);
         bool RemoveItem(Item item);
-        bool UpdateItem(Item item, Item updatedItem);
+        bool UpdateItem(Item updatedItem, int pos);
 
         ObservableCollection<Supply> GetSupplies();
         bool AddSupply(Supply supply);

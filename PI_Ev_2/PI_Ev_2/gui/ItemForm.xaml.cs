@@ -15,27 +15,44 @@ using System.Windows.Shapes;
 
 namespace PI_Ev_2.gui
 {
-   public partial class RaceForm : Window{
-
-       private Race Race { get; set; }
+   public partial class ItemForm : Window
+    {
+       private Item Item { get; set; }
        private bool Modifying;
        private int Pos;
-
-       public RaceForm()
+        
+       public ItemForm()
        {
            InitializeComponent();
-           Race = new Race();
-           this.DataContext = Race;
+           MyInitializeComponent();
+           Item = new Item();
+           this.DataContext = Item;
        }
-       
-       public RaceForm(Race race, int pos)
+
+       public ItemForm(Item item, int pos)
        {
            InitializeComponent();
-           Race = race;
-           this.DataContext = Race;
+           MyInitializeComponent();
+           Item = item;
+           this.DataContext = Item;
            Modifying = true;
            Pos = pos;
-        }
+       }
+
+       private void MyInitializeComponent()
+       {
+           var types = new List<String>();
+           types.Add("Bebida");
+           types.Add("Comida");
+           types.Add("Material Sanitario");
+           foreach (String type in types)
+           {
+               var cbi = new ComboBoxItem();
+               cbi.Content = type;
+               cbType.Items.Add(cbi);
+           }
+       }
+
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -51,23 +68,22 @@ namespace PI_Ev_2.gui
             }
 
             if (!Modifying)
-                AddRace();
+                AddItem();
             else
-                EditRace();
-            
+                EditItem();             
         }
 
-        private void AddRace()
+        private void AddItem()
         {
-            if (!RepositoryImpl.GetInstance().AddRace(Race))
+            if (!RepositoryImpl.GetInstance().AddItem(Item))
                 MessageBox.Show("La carrera ya existe", "Error");
             else
                 this.Close();
         }
 
-        private void EditRace()
+        private void EditItem()
         {
-            if (!RepositoryImpl.GetInstance().UpdateRace(Race, Pos))
+            if (!RepositoryImpl.GetInstance().UpdateItem(Item, Pos))
                 MessageBox.Show("La carrera ya existe", "Error");
             else
                 this.Close();
