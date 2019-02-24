@@ -100,11 +100,11 @@ namespace PI_Ev_2.logic
 
             return result && Races.Remove(race);
         }
-        public bool UpdateRace(Race race, Race updatedRace)
+        public bool UpdateRace(Race updatedRace, int pos)
         {
             if (Races.Contains(updatedRace))
                 return false;
-            Races[Races.IndexOf(race)] = updatedRace;
+            Races[pos] = updatedRace;
             return true;
         }    
     }

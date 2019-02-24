@@ -22,6 +22,6 @@ namespace PI_Ev_2.logic
         ObservableCollection<Race> GetRaces();
         bool AddRace(Race race);
         bool RemoveRace(Race race);
-        bool UpdateRace(Race race, Race updatedRace);
+        bool UpdateRace(Race updatedRace, int pos);
     }
 }

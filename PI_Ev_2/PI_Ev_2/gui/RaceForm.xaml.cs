@@ -15,26 +15,26 @@ using System.Windows.Shapes;
 
 namespace PI_Ev_2.gui
 {
-    /// <summary>
-    /// Lógica de interacción para RaceForm.xaml
-    /// </summary>
-    public partial class RaceForm : Window{
+   public partial class RaceForm : Window{
 
-        private Race Race { get; set; }
+       private Race Race { get; set; }
+       private bool Modifying;
+       private int Pos;
 
-        public RaceForm(Race race)
-        {
-            InitializeComponent();
-            this.DataContext = this;
-
-            Race = race;
-            MyInitializeComponent();
-        }
-
-        private void MyInitializeComponent()
-        {
-            if (Race != null)
-                txtName.Text = Race.Name;
+       public RaceForm()
+       {
+           InitializeComponent();
+           Race = new Race("");
+           this.DataContext = Race;
+       }
+       
+       public RaceForm(Race race, int pos)
+       {
+           InitializeComponent();
+           Race = race;
+           this.DataContext = Race;
+           Modifying = true;
+           Pos = pos;
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace PI_Ev_2.gui
                 return;
             }
 
-            if (Race == null)
+            if (!Modifying)
                 AddRace();
             else
                 EditRace();
@@ -59,8 +59,7 @@ namespace PI_Ev_2.gui
 
         private void AddRace()
         {
-            Race race = new Race(txtName.Text);
-            if (!RepositoryImpl.GetInstance().AddRace(race))
+            if (!RepositoryImpl.GetInstance().AddRace(Race))
                 MessageBox.Show("La carrera ya existe", "Error");
             else
                 this.Close();
@@ -68,8 +67,7 @@ namespace PI_Ev_2.gui
 
         private void EditRace()
         {
-            Race race = new Race(txtName.Text);
-            if (!RepositoryImpl.GetInstance().UpdateRace(Race, race))
+            if (!RepositoryImpl.GetInstance().UpdateRace(Race, Pos))
                 MessageBox.Show("La carrera ya existe", "Error");
             else
                 this.Close();

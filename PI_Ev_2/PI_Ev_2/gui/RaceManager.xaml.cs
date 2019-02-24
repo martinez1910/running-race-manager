@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace PI_Ev_2.gui
 {
-    /// <summary>
-    /// Lógica de interacción para RaceManager.xaml
-    /// </summary>
     public partial class RaceManager : Window
     {
         private ObservableCollection<Race> _races;
@@ -38,20 +35,21 @@ namespace PI_Ev_2.gui
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            RaceForm window = new RaceForm(null);
-            window.Show();
+            RaceForm window = new RaceForm();
+            window.ShowDialog();
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGrid.SelectedCells.Count == 0)
+            int pos = DataGrid.SelectedIndex;
+            if (pos == -1)
             {
                 MessageBox.Show("Seleccione una carrera", "Error");
                 return;
             }
-            Race race = (Race) DataGrid.SelectedCells[0].Item;
-            RaceForm window = new RaceForm(race);
-            window.Show();
+            Race race = (Race) DataGrid.SelectedItem;
+            RaceForm window = new RaceForm((Race)race.Clone(), pos);
+            window.ShowDialog();
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)

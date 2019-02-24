@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace PI_Ev_2
 {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -29,9 +26,15 @@ namespace PI_Ev_2
         private void BtnRaceManager_Click(object sender, RoutedEventArgs e)
         {
             RaceManager window = new RaceManager();
-            window.Show();
+            window.ShowDialog();
         }
 
+        private void BtnSupplyManager_Click(object sender, RoutedEventArgs e)
+        {
+            SupplyManager window = new SupplyManager();
+            window.ShowDialog();
+        }
+        
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
