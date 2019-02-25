@@ -47,7 +47,16 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione una carrera", "Error");
                 return;
             }
-            Race race = (Race) DataGrid.SelectedItem;
+            
+            Race race;
+            try
+            {
+                 race = (Race)DataGrid.SelectedItem;
+            }
+            catch (InvalidCastException)
+            {
+                return;
+            } 
             RaceForm window = new RaceForm((Race)race.Clone(), pos);
             window.ShowDialog();
         }
@@ -59,7 +68,15 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione una carrera", "Error");
                 return;
             }
-            var race = (Race) DataGrid.SelectedCells[0].Item;
+
+            Race race;
+            try{
+            race = (Race) DataGrid.SelectedCells[0].Item;
+            }
+            catch (InvalidCastException)
+            {
+                return;
+            }
             RepositoryImpl.GetInstance().RemoveRace(race);
         }
     }

@@ -48,7 +48,16 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione un material", "Error");
                 return;
             }
-            MyItem item = (MyItem)DataGrid.SelectedItem;
+
+            MyItem item;
+            try
+            {
+                item = (MyItem)DataGrid.SelectedItem;
+            }
+            catch (InvalidCastException)
+            {
+                return;
+            }
             ItemForm window = new ItemForm((MyItem)item.Clone(), pos);
             window.ShowDialog();
         }
@@ -60,7 +69,16 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione un material", "Error");
                 return;
             }
-            var item = (MyItem)DataGrid.SelectedCells[0].Item;
+
+            MyItem item;
+            try
+            {
+                item = (MyItem)DataGrid.SelectedCells[0].Item;
+            }
+            catch (InvalidCastException)
+            {
+                return;
+            }
             if (!RepositoryImpl.GetInstance().RemoveItem(item))
                 MessageBox.Show("El material está asociado a un avituallamiento", "Error");
         }

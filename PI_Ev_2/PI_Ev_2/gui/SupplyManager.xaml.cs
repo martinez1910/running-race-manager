@@ -49,7 +49,15 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione un avituallamiento", "Error");
                 return;
             }
-            Supply supply = (Supply)DataGrid.SelectedItem;
+            Supply supply;
+            try
+            {
+                supply = (Supply)DataGrid.SelectedItem;
+            }
+            catch (InvalidCastException)
+            {
+                return;
+            }
             SupplyForm window = new SupplyForm(supply.DeepClone(), pos);
             window.ShowDialog();
         }
@@ -61,7 +69,16 @@ namespace PI_Ev_2.gui
                 MessageBox.Show("Seleccione un avituallamiento", "Error");
                 return;
             }
-            var supply = (Supply)DataGrid.SelectedCells[0].Item;
+
+            Supply supply;
+            try
+            {
+                supply = (Supply)DataGrid.SelectedCells[0].Item;
+            }
+            catch (InvalidCastException)
+            {
+                return;
+            }
             RepositoryImpl.GetInstance().RemoveSupply(supply);
         }
     }
