@@ -1,7 +1,7 @@
 ﻿<Window x:Class="PI_Ev_2.gui.ItemManager"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ItemManager" Height="251" Width="350"
+        Title="Administrador de Material" Height="251" Width="350"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
     <Grid>

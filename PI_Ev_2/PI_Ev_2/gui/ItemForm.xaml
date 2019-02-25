@@ -1,7 +1,7 @@
 ﻿<Window x:Class="PI_Ev_2.gui.ItemForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ItemForm" Height="175" Width="266.5"
+        Title="Formulario de Material" Height="175" Width="266.5"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
     <Grid>
